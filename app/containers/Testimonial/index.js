@@ -20,9 +20,12 @@ import saga from './saga';
 import messages from './messages';
 import NavBar from '../AdminDashboard/navbar';
 import { submitTestimonialRequest, fetchTestimonialRequest } from './actions';
-import { push } from 'connected-react-router'
+import { push } from 'connected-react-router';
 
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
+import { Switch, Route } from 'react-router-dom';
+
+import ListTestimonial from '../Testimonial/ListTestimonial/Loadable';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -54,10 +57,10 @@ export class Testimonial extends React.Component {
 
   handleButton = e => {
     e.preventDefault();
-    console.log("from handle button")
+    console.log('from handle button');
     // this.props.fetchTestimonialRequest();
     // this.props.dispatch(fetchRequesting());
-    this.props.redirect('/admin/listtestimonial')
+    this.props.redirect('/admin/testimonial/listtestimonial');
   };
   resetvalue = () => {
     this.setState({
@@ -129,8 +132,13 @@ export class Testimonial extends React.Component {
             <Button onClick={this.resetvalue}>Reset</Button>
           </Form>
         </Modal>
-
         <Button onClick={this.handleButton}>ListTestimonial</Button>
+        <Switch>
+          <Route 
+            path="/admin/testimonial/listtestimonial"
+            component={ListTestimonial}
+          />
+        </Switch>
       </div>
     );
   }
@@ -153,7 +161,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   submitTestimonialRequest: data => dispatch(submitTestimonialRequest(data)),
   fetchTestimonialRequest: () => dispatch(fetchTestimonialRequest()),
-  redirect: (path) => dispatch(push(path))
+  redirect: path => dispatch(push(path)),
 });
 
 const withConnect = connect(

@@ -132,7 +132,7 @@ export class LoginForm extends React.Component {
                 <span>{errors.password && errors.password}</span>
                 <Button color="teal" fluid size="large">
                   Login
-                </Button>
+                </Button><br />
                 <Button color="green" fluid size="large" onClick={this.resetvalue}>Reset</Button>
               </Segment>
             </Form>

@@ -7,9 +7,9 @@ import { makeSelectUser, makeSelectLocation } from '../App/selectors';
 import AdminRoutes from './Routes';
 import { push } from 'connected-react-router';
 import NavBar from './navbar';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
-import ListTestimonial from '../Testimonial/listTestimonial';
+import ListTestimonial from '../Testimonial/ListTestimonial';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -39,9 +39,12 @@ class AdminDashboard extends React.Component {
     return (
       <div>
         <NavBar />
+        <br />
         <Switch>
           <Route path="/admin/testimonial" component={Testimonial} />
-          <Route path="/admin/listtestimonial" component={ListTestimonial} />
+          {/* <Route path="/admin/listtestimonial" component={ListTestimonial} /> */}
+          
+          {/* <Route path="/admin/testimonial/listtestimonial" component={ListTestimonial} /> */}
           {/* <Route path ="/admin/profile" component={Profile} /> */}
         </Switch>
       </div>

@@ -1,5 +1,5 @@
-import { fromJS } from "immutable";
-import * as types from "./constants";
+import { fromJS } from 'immutable';
+import * as types from './constants';
 // todo: change other action types to local actions to avoid future confusion
 import { SIGNUP_SUCCESS } from '../Register/constants'; // for getting success message of sign up
 import { MULTI_FACTOR_AUTH_LOGIN_FAILURE } from './multi-factor-login/constants';
@@ -61,7 +61,10 @@ function loginReducer(state = initialState, action) {
         success: false,
         error: action.error.message,
         response: '',
-        isCaptchaEnabled: action.error.data && action.error.data.captcha_enable ? action.error.data.captcha_enable : false
+        isCaptchaEnabled:
+          action.error.data && action.error.data.captcha_enable
+            ? action.error.data.captcha_enable
+            : false,
       });
     case types.LOGIN_FAILURE:
       return state.merge({
@@ -69,15 +72,27 @@ function loginReducer(state = initialState, action) {
         success: false,
         error: action.error.message,
         response: '',
-        userId: action.error.data && action.error.data.user_id ? action.error.data.user_id : '',
-        isCaptchaEnabled: action.error.data && action.error.data.captcha_enable ? action.error.data.captcha_enable : false
+        userId:
+          action.error.data && action.error.data.user_id
+            ? action.error.data.user_id
+            : '',
+        isCaptchaEnabled:
+          action.error.data && action.error.data.captcha_enable
+            ? action.error.data.captcha_enable
+            : false,
       });
     case types.CHECK_CAPTCHA_REQUEST:
       return state.merge({ captchaCheckRequesting: true });
     case types.CHECK_CAPTCHA_FAILURE:
-      return state.merge({ captchaCheckRequesting: false, error: action.error.message });
+      return state.merge({
+        captchaCheckRequesting: false,
+        error: action.error.message,
+      });
     case types.CHECK_CAPTCHA_SUCCESS:
-      return state.merge({ captchaCheckRequesting: false, isCaptchaEnabled: !!action.payload.data.captcha_enable });
+      return state.merge({
+        captchaCheckRequesting: false,
+        isCaptchaEnabled: !!action.payload.data.captcha_enable,
+      });
     case types.LOGIN_BY_TOKEN_SUCCESS:
       return state.merge({
         requesting: false,
@@ -85,11 +100,12 @@ function loginReducer(state = initialState, action) {
         userInfo: fromJS(action.response.data),
         isLoggedIn: true,
         error: '',
-        hasUserConfirmed: action.response.data && action.response.data.confirmed || false,
+        hasUserConfirmed:
+          (action.response.data && action.response.data.confirmed) || false,
       });
     case SIGNUP_SUCCESS:
       return state.merge({
-        response: action.response.message
+        response: action.response.message,
       });
 
     case types.LOGIN_SUCCESS:
@@ -97,9 +113,13 @@ function loginReducer(state = initialState, action) {
       //   error:'',
       //   requesting:false
       // })
-      localStorage.setItem("token", action.user.data.token); // todo: localStorage changes to be put in sagas
+      localStorage.setItem('token', action.user.data.token); // todo: localStorage changes to be put in sagas
       // localStorage.setItem("userConfirmation", action.user.data.userInfo.confirmed);
-      action.user.data.allowed_actions && localStorage.setItem("allowed_actions", action.user.data.allowed_actions);
+      action.user.data.allowed_actions &&
+        localStorage.setItem(
+          'allowed_actions',
+          action.user.data.allowed_actions,
+        );
       return state.merge({
         userInfo: fromJS(action.user.data.userInfo),
         isLoggedIn: true,
@@ -119,16 +139,19 @@ function loginReducer(state = initialState, action) {
         success: false,
         error: action.error.message,
         response: null,
-        isCaptchaEnabled: action.error.data && action.error.data.captcha_enable ? action.error.data.captcha_enable : false
+        isCaptchaEnabled:
+          action.error.data && action.error.data.captcha_enable
+            ? action.error.data.captcha_enable
+            : false,
       });
     case types.LOGIN_CLEAR_MESSAGES:
       return state.merge({
         response: '',
-        error: ''
+        error: '',
       });
     case types.UPDATE_USER_INFO:
       return state.merge({
-        userInfo: fromJS(action.newInfo)
+        userInfo: fromJS(action.newInfo),
       });
     default:
       return state;
