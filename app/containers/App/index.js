@@ -69,7 +69,7 @@ class App extends React.Component {
     return (
       <div>
         <Route location={this.props.location} />
-        <GlobalStyle />
+        <GlobalStyle /> 
       </div>
     );
   }

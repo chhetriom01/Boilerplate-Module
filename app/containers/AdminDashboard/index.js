@@ -6,20 +6,20 @@ import jwtDecode from 'jwt-decode';
 import { makeSelectUser, makeSelectLocation } from '../App/selectors';
 import AdminRoutes from './Routes';
 import { push } from 'connected-react-router';
-import NavBar from './navbar';
+// import {NavBar} from './Navbar';
+import NavBar from '../NavBar';
 import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
 import ListTestimonial from '../Testimonial/ListTestimonial';
+import { SideBar } from '../SideBar';
+import GlobalStyle from '../../global-styles';
+
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
-  // user: makeSelectUser()
 });
 
 const mapDispatchToProps = dispatch => ({
-  // logout: () => dispatch(logoutRequest()),
-  // clearDistributorState: () => dispatch(clearAllStates()),
-  // navigateToProfilePage: () => dispatch(push('/admin/dashboard/profile')),
   redirect: path => dispatch(push(path)),
 });
 
@@ -38,15 +38,23 @@ class AdminDashboard extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <div className="fp-wrapper">
+          <div className="sidebar">
+            <NavBar />
+          </div>
+          <div className="fp-panel-main">
+            <SideBar />
+          </div>
+        </div>
         <br />
         <Switch>
           <Route path="/admin/testimonial" component={Testimonial} />
           {/* <Route path="/admin/listtestimonial" component={ListTestimonial} /> */}
-          
+
           {/* <Route path="/admin/testimonial/listtestimonial" component={ListTestimonial} /> */}
           {/* <Route path ="/admin/profile" component={Profile} /> */}
         </Switch>
+        <GlobalStyle /> 
       </div>
     );
   }

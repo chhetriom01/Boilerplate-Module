@@ -763,3 +763,15 @@ h1 {
 .spinner {
   height: 40vh;
 }
+// navbar and side bar
+.fp-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap; //This will keep the layout at all screen sizes.
+}
+.sidebar {
+  width: 30%;
+}
+.fp-panel-main {
+  width: 70%;
+}
