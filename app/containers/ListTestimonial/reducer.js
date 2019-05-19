@@ -1,6 +1,6 @@
 /*
  *
- * Testimonial reducer
+ * ListTestimonial reducer
  *
  */
 
@@ -9,35 +9,29 @@ import * as type from './constants';
 
 export const initialState = fromJS({
   loading: false,
-  postResponse: {},
   fetchResponse: {},
-  kiran: ''
 });
 
-function testimonialReducer(state = initialState, action) {
+function listTestimonialReducer(state = initialState, action) {
   switch (action.type) {
-    case type.SUBMIT_TESTIMONIAL_REQUEST:
-      console.log(action, 'from reducers');
+    case type.FETCH_TESTIMONIAL_REQUEST:
       return state.merge({
         loading: true,
       });
-
-    case type.SUBMIT_TESTIMONIAL_SUCCESS:
-        console.log(action, 'from reducers success');
+    case type.FETCH_TESTIMONIAL_SUCCESS:
+      console.log('from reducers', action.response);
       return state.merge({
         loading: false,
-        postResponse: action,
+        fetchResponse: action.response,
       });
-
-    case type.SUBMIT_TESTIMONIAL_ERROR:
+    case type.FETCH_TESTIMONIAL_ERROR:
       return state.merge({
         loading: true,
         error,
       });
-
     default:
       return state;
   }
 }
 
-export default testimonialReducer;
+export default listTestimonialReducer;

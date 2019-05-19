@@ -10,10 +10,9 @@ import { push } from 'connected-react-router';
 import NavBar from '../NavBar';
 import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
-import ListTestimonial from '../Testimonial/ListTestimonial';
+
 import { SideBar } from '../SideBar';
 import GlobalStyle from '../../global-styles';
-
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -38,23 +37,13 @@ class AdminDashboard extends React.Component {
   render() {
     return (
       <div>
-        <div className="fp-wrapper">
-          <div className="sidebar">
-            <NavBar />
-          </div>
-          <div className="fp-panel-main">
-            <SideBar />
-          </div>
-        </div>
+        <NavBar />
+        {/* <SideBar /> */}
         <br />
         <Switch>
           <Route path="/admin/testimonial" component={Testimonial} />
-          {/* <Route path="/admin/listtestimonial" component={ListTestimonial} /> */}
-
-          {/* <Route path="/admin/testimonial/listtestimonial" component={ListTestimonial} /> */}
-          {/* <Route path ="/admin/profile" component={Profile} /> */}
         </Switch>
-        <GlobalStyle /> 
+        <GlobalStyle />
       </div>
     );
   }

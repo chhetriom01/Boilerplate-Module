@@ -19,13 +19,12 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import NavBar from '../AdminDashboard/navbar';
-import { submitTestimonialRequest, fetchTestimonialRequest } from './actions';
+import { submitTestimonialRequest } from './actions';
 import { push } from 'connected-react-router';
 
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 import { Switch, Route } from 'react-router-dom';
-
-import ListTestimonial from '../Testimonial/ListTestimonial/Loadable';
+import ListTestimonial from '../ListTestimonial'
 
 export class Testimonial extends React.Component {
   constructor(props) {

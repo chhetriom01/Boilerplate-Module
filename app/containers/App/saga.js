@@ -26,12 +26,12 @@ function* redirectOnLoginByTokenSuccess() {
 }
 
 function* loginByTokenFlow(action) {
-  const successWatcher = yield fork(redirectOnLoginByTokenSuccess);
-  const { userId } = action;
-  const token = localStorage.getItem('token');
-  yield fork(Api.get(`user/data/${userId}`, loginByTokenSuccess, loginByTokenFailure, token));
-  yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
-  yield cancel(successWatcher);
+  // const successWatcher = yield fork(redirectOnLoginByTokenSuccess);
+  // const { userId } = action;
+  // const token = localStorage.getItem('token');
+  // yield fork(Api.get(`user/data/${userId}`, loginByTokenSuccess, loginByTokenFailure, token));
+  // yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
+  // yield cancel(successWatcher);
 }
 
 const checkIfMultiFactor = response => {

@@ -22,11 +22,11 @@ import {
   Sidebar,
   
   Menu,
-  Link,
   Icon,
   Dropdown,
   Segment,
 } from 'semantic-ui-react';
+import {Link}  from 'connected-react-router'
 
 /* eslint-disable react/prefer-stateless-function */
 export class SideBar extends React.Component {

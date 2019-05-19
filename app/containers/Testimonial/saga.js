@@ -12,6 +12,7 @@ function* redirectOnSuccess() {
 }
 
 function* postData(action) {
+
   const { data } = action;
   const token = localStorage.getItem('token');
   const successWatcher = yield fork(redirectOnSuccess);
@@ -27,16 +28,16 @@ function* postData(action) {
 }
 
 
-function* fetchData() {
-  yield call(
-    XcelTrip.get(
-      apiUri,
-      actions.fetchTestimonialSuccess,
-      actions.fetchTestimonialError,
-    ),
-  );
-}
+// function* fetchData() {
+//   yield call(
+//     XcelTrip.get(
+//       apiUri,
+//       actions.fetchTestimonialSuccess,
+//       actions.fetchTestimonialError,
+//     ),
+//   );
+// }
 export default function* testimonialSaga() {
   yield takeLatest(types.SUBMIT_TESTIMONIAL_REQUEST, postData);
-  yield takeLatest(types.FETCH_TESTIMONIAL_REQUEST,fetchData)
+  // yield takeLatest(types.FETCH_TESTIMONIAL_REQUEST,fetchData);
 }

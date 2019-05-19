@@ -14,6 +14,10 @@ const selectTestimonialDomain = state => state.get('testimonial', initialState);
 /**
  * Default selector used by Testimonial
  */
+const makeselectPost =  () => createImageBitmap(
+  selectTestimonialDomain,
+  substate => substate.get('postResponse')
+)
 
 const makeSelectTestimonial = () =>
   createSelector(
@@ -28,4 +32,4 @@ const makeSelectKiran = () =>
   );
 
 export default makeSelectTestimonial;
-export { makeSelectKiran, selectTestimonialDomain };
+export { makeSelectKiran, selectTestimonialDomain,makeselectPost };

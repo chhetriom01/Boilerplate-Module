@@ -18,8 +18,8 @@ import makeSelectNavBar from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Menu, Segment,Link } from 'semantic-ui-react';
-import { Route } from 'react-router-dom';
+import { Menu, Segment } from 'semantic-ui-react';
+import { Route,Link } from 'react-router-dom';
 import AdminDashboard from '../AdminDashboard';
 import {push} from "connected-react-router"
 /* eslint-disable react/prefer-stateless-function */

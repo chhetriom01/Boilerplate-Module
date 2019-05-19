@@ -1,0 +1,13 @@
+
+.fp-wrapper {
+    width: 100%;
+    /* display: flex; */
+    flex-wrap: ''; 
+  }
+  .sidebar {
+    width: 80%;
+  }
+  .fp-panel-main {
+    width: 70%;
+  }
+ 
