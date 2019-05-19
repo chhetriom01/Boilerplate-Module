@@ -8,7 +8,7 @@ const apiUri = `testimonial`;
 
 function* redirectOnSuccess() {
   const action = yield take(types.SUBMIT_TESTIMONIAL_SUCCESS);
-  yield put(push('/admin'));
+  yield put(push('/admin/testimonial/listtestimonial'));
 }
 
 function* postData(action) {

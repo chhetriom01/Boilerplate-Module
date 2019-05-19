@@ -48,56 +48,46 @@ export class ListTestimonial extends React.Component {
     });
   }
 
+  handleClick = (id) => {
+    console.log("from delete console", id)
+
+
+  }
+
   render() {
     return (
       <div>
-        {this.state.listTestimonialFromReducer &&
-          this.state.listTestimonialFromReducer.length > 0 &&
-          this.state.listTestimonialFromReducer.map((element, index) => (
-            <div key={index}>
-              <Table celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Name</Table.HeaderCell>
-                    <Table.HeaderCell>Status</Table.HeaderCell>
-                    <Table.HeaderCell>Notes</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>No Name Specified</Table.Cell>
-                    <Table.Cell>Approved</Table.Cell>
-                    <Table.Cell>None</Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-            </div>
-          ))}
-        {this.state.listTestimonialFromReducer &&
-          this.state.listTestimonialFromReducer.length > 0 &&
-          this.state.listTestimonialFromReducer.map((element, index) => (
-            <div key={index} className="Card">
-              <Card>
-                <Card.Content>
-                  <Card.Header>{element.personName}</Card.Header>
-                  <Card.Meta>{element.testimonialContent}</Card.Meta>
-                  <Card.Meta>{element.organization}</Card.Meta>
-                  <Card.Description>{element._id}</Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <div className="ui two buttons">
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>S</Table.HeaderCell>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Organization</Table.HeaderCell>
+              <Table.HeaderCell>Content</Table.HeaderCell>
+              <Table.HeaderCell>Action</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.state.listTestimonialFromReducer &&
+              this.state.listTestimonialFromReducer.length > 0 &&
+              this.state.listTestimonialFromReducer.map((element, index) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{index + 1}</Table.Cell>
+                  <Table.Cell>{element.personName}</Table.Cell>
+                  <Table.Cell>{element.organization}</Table.Cell>
+                  <Table.Cell>{element.testimonialContent}</Table.Cell>
+                  <Table.Cell className="ui two buttons">
                     <Button basic color="green">
                       Edit
                     </Button>
-                    <Button basic color="red" onClick={this.handleClick}>
+                    <Button basic color="red" onClick={this.handleClick(element._id)}>
                       Delete
                     </Button>
-                  </div>
-                </Card.Content>
-              </Card>
-            </div>
-          ))}
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+          </Table.Body>
+        </Table>
       </div>
     );
   }
