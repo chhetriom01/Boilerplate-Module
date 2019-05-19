@@ -21,6 +21,11 @@ const makeSelectListTestimonial = () =>
     selectListTestimonialDomain,
     substate => substate.toJS(),
   );
+  const makeSelectTestimonial =() =>
+  createSelector(
+    selectListTestimonialDomain,
+    substate => substate.get("fetchResponse")
+  );
 
 export default makeSelectListTestimonial;
-export { selectListTestimonialDomain };
+export { selectListTestimonialDomain,makeSelectTestimonial };

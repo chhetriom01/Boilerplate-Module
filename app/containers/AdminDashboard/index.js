@@ -10,6 +10,7 @@ import { push } from 'connected-react-router';
 import NavBar from '../NavBar';
 import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
+import ListTestimonial from 'containers/ListTestimonial';
 
 import { SideBar } from '../SideBar';
 import GlobalStyle from '../../global-styles';
@@ -41,7 +42,9 @@ class AdminDashboard extends React.Component {
         {/* <SideBar /> */}
         <br />
         <Switch>
-          <Route path="/admin/testimonial" component={Testimonial} />
+          <Route exact path="/admin/testimonial" component={Testimonial} />
+          <Route path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
+
         </Switch>
         <GlobalStyle />
       </div>

@@ -23,8 +23,8 @@ import { submitTestimonialRequest } from './actions';
 import { push } from 'connected-react-router';
 
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
-import { Switch, Route } from 'react-router-dom';
-import ListTestimonial from '../ListTestimonial'
+import { Switch, Route, Link } from 'react-router-dom';
+import ListTestimonial from '../ListTestimonial';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export class Testimonial extends React.Component {
       data: data,
     });
   };
-
+/* used for the list tesimonial in different ways
   handleButton = e => {
     e.preventDefault();
     console.log('from handle button');
@@ -61,6 +61,7 @@ export class Testimonial extends React.Component {
     // this.props.dispatch(fetchRequesting());
     this.props.redirect('/admin/testimonial/listtestimonial');
   };
+  */
   resetvalue = () => {
     this.setState({
       data: {
@@ -131,13 +132,9 @@ export class Testimonial extends React.Component {
             <Button onClick={this.resetvalue}>Reset</Button>
           </Form>
         </Modal>
-        <Button onClick={this.handleButton}>ListTestimonial</Button>
-        <Switch>
-          <Route 
-            path="/admin/testimonial/listtestimonial"
-            component={ListTestimonial}
-          />
-        </Switch>
+        <Link to="/admin/testimonial/listtestimonial">
+          <Button type="button">ListTestimonial</Button>
+        </Link>
       </div>
     );
   }

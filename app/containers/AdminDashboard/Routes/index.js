@@ -11,8 +11,6 @@ function AdminRoutes({ location }) {
   return (
     <Switch>
       <Route exact path="/admin" component={AdminDashboard} />
-
-
     </Switch>
   );
 }

@@ -19,10 +19,9 @@ function listTestimonialReducer(state = initialState, action) {
         loading: true,
       });
     case type.FETCH_TESTIMONIAL_SUCCESS:
-      console.log('from reducers', action.response);
       return state.merge({
         loading: false,
-        fetchResponse: action.response,
+        fetchResponse: action.response.dataList,
       });
     case type.FETCH_TESTIMONIAL_ERROR:
       return state.merge({
