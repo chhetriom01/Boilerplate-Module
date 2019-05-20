@@ -16,13 +16,16 @@ export const initialState = fromJS({
 function testimonialEditReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_DATA_BY_ID_REQUEST:
+      console.log('from reducers', action);
       return state.merge({
         loading: true,
       });
     case types.GET_DATA_BY_ID_SUCCESS:
+      console.log('from reducers Success', action);
+
       return state.merge({
         loading: false,
-        getTestimonialByIdResponse: action.response,
+        getTestimonialByIdResponse: action,
       });
     case types.GET_DATA_BY_ID_ERROR:
       return state.merge({

@@ -19,7 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
-
+import { getTestimonialByIdRequest } from './actions';
 /* eslint-disable react/prefer-stateless-function */
 export class TestimonialEdit extends React.Component {
   constructor(props) {
@@ -34,8 +34,7 @@ export class TestimonialEdit extends React.Component {
   }
   componentDidMount() {
     // console.log(this.props.match.params.id,"from index of edit testimonial")
-    // this.props.
-
+    this.props.getTestimonialByIdRequest(this.props.match.params.id);
   }
   render() {
     return (
@@ -89,19 +88,22 @@ export class TestimonialEdit extends React.Component {
   }
 }
 
-TestimonialEdit.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// TestimonialEdit.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   testimonialEdit: makeSelectTestimonialEdit(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     dispatch,
+//   };
+// }
+const mapDispatchToProps = dispatch => ({
+  getTestimonialByIdRequest: id => dispatch(getTestimonialByIdRequest(id)),
+});
 
 const withConnect = connect(
   mapStateToProps,
