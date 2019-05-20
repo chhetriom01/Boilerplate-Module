@@ -5,14 +5,30 @@
  */
 
 import { fromJS } from 'immutable';
-import { DEFAULT_ACTION } from './constants';
+import * as types from './constants';
 
-export const initialState = fromJS({});
+export const initialState = fromJS({
+  loading: false,
+  getTestimonialByIdResponse: {},
+  error: {},
+});
 
 function testimonialEditReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case types.GET_DATA_BY_ID_REQUEST:
+      return state.merge({
+        loading: true,
+      });
+    case types.GET_DATA_BY_ID_SUCCESS:
+      return state.merge({
+        loading: false,
+        getTestimonialByIdResponse: action.response,
+      });
+    case types.GET_DATA_BY_ID_ERROR:
+      return state.merge({
+        loading: true,
+        error: action.error,
+      });
     default:
       return state;
   }

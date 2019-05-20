@@ -22,68 +22,66 @@ import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 
 /* eslint-disable react/prefer-stateless-function */
 export class TestimonialEdit extends React.Component {
-  constructor(props){
-    super(props)
-    this.state ={
-      data:{
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
         personName: null,
         testimonialContent: null,
-        organization: null
-      }
-    }
+        organization: null,
+      },
+    };
   }
-  componentDidMount(){
-    // this.props.
+  componentDidMount() {
+    // console.log(this.props.match.params.id,"from index of edit testimonial")
   }
   render() {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-            <Form.Group>
-              <Form.Input
-                label="Person Name"
-                placeholder="Enter personName"
-                name="personName"
-                // value={this.state.data.personName}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group>
+          <Form.Group>
+            <Form.Input
+              label="Person Name"
+              placeholder="Enter personName"
+              name="personName"
+              // value={this.state.data.personName}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
 
-            <Form.Group>
+          <Form.Group>
+            <Form.Input
+              label="Testimonial Content"
+              placeholder="testimonialContent"
+              name="testimonialContent"
+              // value={this.state.data.testimonialContent}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Input
+              label="Organization"
+              placeholder="Name of organization"
+              name="organization"
+              // value={this.state.data.organization}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+          <Form.Field>
+            {/* <Form.Group> */}
               <Form.Input
-                label="Testimonial Content"
-                placeholder="testimonialContent"
-                name="testimonialContent"
-                // value={this.state.data.testimonialContent}
-                onChange={this.onInputChange}
-                required
+                label="User_id"
+                readOnly
+                value={this.props.match.params.id}
               />
-            </Form.Group>
-            <Form.Group>
-              <Form.Input
-                label="Organization"
-                placeholder="Name of organization"
-                name="organization"
-                // value={this.state.data.organization}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group>
-            {/* <Form.Group>
-              <Form.Input
-                label="Message"
-                placeholder="enter your message"
-                name="message"
-                value={this.state.data.message}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group> */}
-            <Button type="Submit">Submit</Button>
-            <Button onClick={this.resetvalue}>Reset</Button>
-          </Form>
-        {/* <FormattedMessage {...messages.header} /> */}
+            {/* </Form.Group> */}
+          </Form.Field>
+          <Button type="Submit">Submit</Button>
+          <Button onClick={this.resetvalue}>Reset</Button>
+        </Form>
       </div>
     );
   }

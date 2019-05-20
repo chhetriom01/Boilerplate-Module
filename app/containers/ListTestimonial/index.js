@@ -23,6 +23,7 @@ import saga from './saga';
 import messages from './messages';
 import { fetchTestimonialRequest, patchTestimonialRequest } from './actions';
 import { Link } from 'react-router-dom';
+import { push } from 'connected-react-router';
 import {
   Card,
   Button,
@@ -69,9 +70,9 @@ export class ListTestimonial extends React.Component {
   };
 
   onEdit = id => {
-    console.log('from the edit ', id);
-  <Link to="/admin/testimonial/listtestimonial/testimonialedit">
-</Link>    
+    this.props.redirect(
+      `/admin/testimonial/listtestimonial/testimonialedit/${id}`,
+    );
   };
 
   render() {
@@ -97,15 +98,15 @@ export class ListTestimonial extends React.Component {
                   <Table.Cell>{element.organization}</Table.Cell>
                   <Table.Cell>{element.testimonialContent}</Table.Cell>
                   <Table.Cell className="ui two buttons">
-                    <Link to="/admin/testimonial/listtestimonial/testimonialedit">
-                      <Button
-                        basic
-                        color="green"
-                        onClick={() => this.onEdit(element._id)}
-                      >
-                        Edit
-                      </Button>
-                    </Link>
+                    {/* <Link to="/admin/testimonial/listtestimonial/testimonialedit/${id}"> */}
+                    <Button
+                      basic
+                      color="green"
+                      onClick={() => this.onEdit(element._id)}
+                    >
+                      Edit
+                    </Button>
+                    {/* </Link> */}
 
                     <Button
                       basic
@@ -137,6 +138,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   fetchTestimonialRequest: () => dispatch(fetchTestimonialRequest()),
   patchTestimonialRequest: id => dispatch(patchTestimonialRequest(id)),
+  redirect: path => dispatch(push(path)),
 });
 
 const withConnect = connect(
