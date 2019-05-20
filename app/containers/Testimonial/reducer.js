@@ -23,7 +23,7 @@ function testimonialReducer(state = initialState, action) {
       });
 
     case type.SUBMIT_TESTIMONIAL_SUCCESS:
-        console.log(action, 'from reducers success');
+        // console.log(action, 'from reducers success');
       return state.merge({
         loading: false,
         postResponse: action,

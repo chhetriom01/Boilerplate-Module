@@ -13,7 +13,8 @@ import Testimonial from 'containers/Testimonial';
 import ListTestimonial from 'containers/ListTestimonial';
 
 import { SideBar } from '../SideBar';
-import GlobalStyle from '../../global-styles';
+
+import './App.css';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -38,15 +39,23 @@ class AdminDashboard extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
-        {/* <SideBar /> */}
+        <div className="fp-wrapper">
+          <div className="sidebar">
+            {/* <SideBar /> */}
+          </div>
+          <div className="fp-panel-main">
+            <NavBar />
+          </div>
+          </div>
+        
         <br />
         <Switch>
           <Route exact path="/admin/testimonial" component={Testimonial} />
-          <Route path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
-
+          <Route
+            path="/admin/testimonial/listtestimonial"
+            component={ListTestimonial}
+          />
         </Switch>
-        <GlobalStyle />
       </div>
     );
   }

@@ -2,12 +2,13 @@
 .fp-wrapper {
     width: 100%;
     display: flex;
-    flex-wrap: unset; 
+    flex-wrap: wrap; 
   }
   .sidebar {
-    width: 80%;
+flex : 33%
   }
   .fp-panel-main {
-    width: 70%;
+    
+    flex: 68%;
   }
  

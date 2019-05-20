@@ -10,3 +10,7 @@
 .fp-panel-main {
   width: 70%;
 }
+.nav_bar{
+  display: flex;
+  flex-wrap: wrap;
+}

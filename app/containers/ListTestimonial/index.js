@@ -43,16 +43,18 @@ export class ListTestimonial extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      listTestimonialFromReducer: nextProps.listTestimonialFromReducer.toJS(),
-    });
+    if (
+      nextProps.listTestimonialFromReducer !==
+      this.props.listTestimonialFromReducer
+    )
+      this.setState({
+        listTestimonialFromReducer: nextProps.listTestimonialFromReducer.toJS(),
+      });
   }
 
-  handleClick = (id) => {
-    console.log("from delete console", id)
-
-
-  }
+  onDelete = id => {
+    console.log('from delete console', id);
+  };
 
   render() {
     return (
@@ -60,7 +62,7 @@ export class ListTestimonial extends React.Component {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>S</Table.HeaderCell>
+              <Table.HeaderCell>S.N</Table.HeaderCell>
               <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Organization</Table.HeaderCell>
               <Table.HeaderCell>Content</Table.HeaderCell>
@@ -80,7 +82,11 @@ export class ListTestimonial extends React.Component {
                     <Button basic color="green">
                       Edit
                     </Button>
-                    <Button basic color="red" onClick={this.handleClick(element._id)}>
+                    <Button
+                      basic
+                      color="red"
+                      onClick={() => this.onDelete(element._id)}
+                    >
                       Delete
                     </Button>
                   </Table.Cell>

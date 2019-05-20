@@ -28,6 +28,22 @@ function listTestimonialReducer(state = initialState, action) {
         loading: true,
         error,
       });
+    case type.PATCH_TESTIMONIAL_REQUEST:
+      return state.merge({
+        loading: true,
+      });
+
+    case type.PATCH_TESTIMONIAL_SUCCESS:
+      return state.merge({
+        loading: false,
+        patchResponse: action,
+      });
+    case type.PATCH_TESTIMONIAL_ERROR:
+      return state.merge({
+        loading: true,
+        error,
+      });
+
     default:
       return state;
   }

@@ -23,6 +23,11 @@ import { Route,Link } from 'react-router-dom';
 import AdminDashboard from '../AdminDashboard';
 import {push} from "connected-react-router"
 /* eslint-disable react/prefer-stateless-function */
+
+const divStyle = {
+  flex: 1,
+};
+
 export class NavBar extends React.Component {
   state = {};
   handleLogout = () => {
@@ -34,7 +39,8 @@ export class NavBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     return (
-      <div className="pusher">
+      <div className="nav_bar" style={divStyle}>
+      <div className="pusher" >
         <Menu pointing secondary>
           <Menu.Item
             as={Link}
@@ -63,6 +69,7 @@ export class NavBar extends React.Component {
             />
           </Menu.Menu>
         </Menu>
+      </div>
       </div>
     );
   }

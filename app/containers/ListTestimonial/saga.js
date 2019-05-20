@@ -5,9 +5,10 @@ import * as actions from './actions';
 import XcelTrip from '../../utils/apiHelper';
 
 
-const apiUri = 'testimonial';
 
 function* fetchData() {
+const apiUri = 'testimonial';
+
   yield call(
     XcelTrip.get(
       apiUri,
@@ -15,6 +16,20 @@ function* fetchData() {
       actions.fetchTestimonialError,
     ),
   );
+}
+
+function* patchData(action){
+  const {id} = action
+const apiUri = `testimonial/${id}`,
+toke = localStorage.getItem('token')
+  yield patch(
+    XcelTrip.patch(
+      apiUri,
+      actions.patchTestimonialSuccess,
+      actions.fetchTestimonialError,
+      token
+    )
+  )
 }
 
 export default function* listTestimonialSaga() {
