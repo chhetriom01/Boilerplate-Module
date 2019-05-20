@@ -34,6 +34,8 @@ export class TestimonialEdit extends React.Component {
   }
   componentDidMount() {
     // console.log(this.props.match.params.id,"from index of edit testimonial")
+    // this.props.
+
   }
   render() {
     return (
@@ -72,11 +74,11 @@ export class TestimonialEdit extends React.Component {
           </Form.Group>
           <Form.Field>
             {/* <Form.Group> */}
-              <Form.Input
-                label="User_id"
-                readOnly
-                value={this.props.match.params.id}
-              />
+            <Form.Input
+              label="User_id"
+              readOnly
+              value={this.props.match.params.id}
+            />
             {/* </Form.Group> */}
           </Form.Field>
           <Button type="Submit">Submit</Button>
