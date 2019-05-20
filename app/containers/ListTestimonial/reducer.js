@@ -10,6 +10,8 @@ import * as type from './constants';
 export const initialState = fromJS({
   loading: false,
   fetchResponse: {},
+  patchResponse: {},
+  error: {}
 });
 
 function listTestimonialReducer(state = initialState, action) {
@@ -26,7 +28,7 @@ function listTestimonialReducer(state = initialState, action) {
     case type.FETCH_TESTIMONIAL_ERROR:
       return state.merge({
         loading: true,
-        error,
+        error: action.error,
       });
     case type.PATCH_TESTIMONIAL_REQUEST:
       return state.merge({
@@ -34,14 +36,15 @@ function listTestimonialReducer(state = initialState, action) {
       });
 
     case type.PATCH_TESTIMONIAL_SUCCESS:
+        // console.log("from rpatch success reducer",action.response)
       return state.merge({
         loading: false,
-        patchResponse: action,
+        patchResponse: action.response,
       });
     case type.PATCH_TESTIMONIAL_ERROR:
       return state.merge({
         loading: true,
-        error,
+        error: action.error,
       });
 
     default:

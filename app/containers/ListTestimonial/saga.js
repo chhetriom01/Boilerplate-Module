@@ -4,10 +4,8 @@ import * as types from './constants';
 import * as actions from './actions';
 import XcelTrip from '../../utils/apiHelper';
 
-
-
 function* fetchData() {
-const apiUri = 'testimonial';
+  const apiUri = 'testimonial';
 
   yield call(
     XcelTrip.get(
@@ -18,20 +16,23 @@ const apiUri = 'testimonial';
   );
 }
 
-function* patchData(action){
-  const {id} = action
-const apiUri = `testimonial/${id}`,
-toke = localStorage.getItem('token')
-  yield patch(
+function* patchData(action) {
+  const { id } = action;
+  // console.log("from saga",id)
+  const apiUri = `testimonial/${id}`,
+    token = localStorage.getItem('token');
+  yield fork(
     XcelTrip.patch(
       apiUri,
       actions.patchTestimonialSuccess,
       actions.fetchTestimonialError,
-      token
-    )
-  )
+      {},
+      token,
+    ),
+  );
 }
 
 export default function* listTestimonialSaga() {
   yield takeLatest(types.FETCH_TESTIMONIAL_REQUEST, fetchData);
+  yield takeLatest(types.PATCH_TESTIMONIAL_REQUEST, patchData);
 }

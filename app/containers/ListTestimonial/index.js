@@ -14,11 +14,14 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectListTestimonial, { makeSelectTestimonial } from './selectors';
+import makeSelectListTestimonial, {
+  makeSelectTestimonial,
+  makePatchTestimonial,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { fetchTestimonialRequest } from './actions';
+import { fetchTestimonialRequest, patchTestimonialRequest } from './actions';
 import {
   Card,
   Button,
@@ -35,6 +38,7 @@ export class ListTestimonial extends React.Component {
     super(props);
     this.state = {
       listTestimonialFromReducer: null,
+      deletepatchTestimonial: null,
     };
   }
 
@@ -46,14 +50,25 @@ export class ListTestimonial extends React.Component {
     if (
       nextProps.listTestimonialFromReducer !==
       this.props.listTestimonialFromReducer
-    )
+    ) {
       this.setState({
         listTestimonialFromReducer: nextProps.listTestimonialFromReducer.toJS(),
       });
+    }
+    if (
+      nextProps.deletepatchTestimonial !== '' &&
+      nextProps.deletepatchTestimonial !== this.props.deletepatchTestimonial
+    ) {
+      this.props.fetchTestimonialRequest();
+    }
   }
 
   onDelete = id => {
-    console.log('from delete console', id);
+    this.props.patchTestimonialRequest(id);
+  };
+
+  onEdit = id => {
+    console.log('from the edit ', id);
   };
 
   render() {
@@ -79,7 +94,11 @@ export class ListTestimonial extends React.Component {
                   <Table.Cell>{element.organization}</Table.Cell>
                   <Table.Cell>{element.testimonialContent}</Table.Cell>
                   <Table.Cell className="ui two buttons">
-                    <Button basic color="green">
+                    <Button
+                      basic
+                      color="green"
+                      onClick={() => this.onEdit(element._id)}
+                    >
                       Edit
                     </Button>
                     <Button
@@ -106,10 +125,12 @@ export class ListTestimonial extends React.Component {
 const mapStateToProps = createStructuredSelector({
   listTestimonial: makeSelectListTestimonial(),
   listTestimonialFromReducer: makeSelectTestimonial(),
+  deletepatchTestimonial: makePatchTestimonial(),
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchTestimonialRequest: () => dispatch(fetchTestimonialRequest()),
+  patchTestimonialRequest: id => dispatch(patchTestimonialRequest(id)),
 });
 
 const withConnect = connect(

@@ -11,7 +11,6 @@ export const initialState = fromJS({
   loading: false,
   postResponse: {},
   fetchResponse: {},
-  kiran: ''
 });
 
 function testimonialReducer(state = initialState, action) {

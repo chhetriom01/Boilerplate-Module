@@ -27,5 +27,11 @@ const makeSelectListTestimonial = () =>
     substate => substate.get("fetchResponse")
   );
 
+  const makePatchTestimonial= () => 
+  createSelector(
+    selectListTestimonialDomain,
+    substate => substate.get("patchResponse")
+  )
+
 export default makeSelectListTestimonial;
-export { selectListTestimonialDomain,makeSelectTestimonial };
+export { selectListTestimonialDomain,makeSelectTestimonial,makePatchTestimonial };
