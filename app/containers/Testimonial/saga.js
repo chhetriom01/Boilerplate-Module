@@ -27,17 +27,6 @@ function* postData(action) {
   );
 }
 
-
-// function* fetchData() {
-//   yield call(
-//     XcelTrip.get(
-//       apiUri,
-//       actions.fetchTestimonialSuccess,
-//       actions.fetchTestimonialError,
-//     ),
-//   );
-// }
 export default function* testimonialSaga() {
   yield takeLatest(types.SUBMIT_TESTIMONIAL_REQUEST, postData);
-  // yield takeLatest(types.FETCH_TESTIMONIAL_REQUEST,fetchData);
 }

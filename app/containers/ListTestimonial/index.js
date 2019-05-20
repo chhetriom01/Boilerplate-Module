@@ -22,6 +22,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { fetchTestimonialRequest, patchTestimonialRequest } from './actions';
+import { Link } from 'react-router-dom';
 import {
   Card,
   Button,
@@ -69,6 +70,8 @@ export class ListTestimonial extends React.Component {
 
   onEdit = id => {
     console.log('from the edit ', id);
+  <Link to="/admin/testimonial/listtestimonial/testimonialedit">
+</Link>    
   };
 
   render() {
@@ -94,13 +97,16 @@ export class ListTestimonial extends React.Component {
                   <Table.Cell>{element.organization}</Table.Cell>
                   <Table.Cell>{element.testimonialContent}</Table.Cell>
                   <Table.Cell className="ui two buttons">
-                    <Button
-                      basic
-                      color="green"
-                      onClick={() => this.onEdit(element._id)}
-                    >
-                      Edit
-                    </Button>
+                    <Link to="/admin/testimonial/listtestimonial/testimonialedit">
+                      <Button
+                        basic
+                        color="green"
+                        onClick={() => this.onEdit(element._id)}
+                      >
+                        Edit
+                      </Button>
+                    </Link>
+
                     <Button
                       basic
                       color="red"

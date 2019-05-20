@@ -24,7 +24,7 @@ import { push } from 'connected-react-router';
 
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 import { Switch, Route, Link } from 'react-router-dom';
-import ListTestimonial from '../ListTestimonial';
+// import ListTestimonial from '../ListTestimonial';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export class Testimonial extends React.Component {
         personName: 'Om Bahadur Chhetri ',
         testimonialContent: 'Article',
         organization: 'BitsBeat',
-        message: 'this is the message',
+        // message: 'this is the message',
       },
       open: false,
     };
@@ -118,7 +118,7 @@ export class Testimonial extends React.Component {
                 required
               />
             </Form.Group>
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Input
                 label="Message"
                 placeholder="enter your message"
@@ -127,7 +127,7 @@ export class Testimonial extends React.Component {
                 onChange={this.onInputChange}
                 required
               />
-            </Form.Group>
+            </Form.Group> */}
             <Button type="Submit">Submit</Button>
             <Button onClick={this.resetvalue}>Reset</Button>
           </Form>

@@ -18,7 +18,6 @@ function* fetchData() {
 
 function* patchData(action) {
   const { id } = action;
-  // console.log("from saga",id)
   const apiUri = `testimonial/${id}`,
     token = localStorage.getItem('token');
   yield fork(
