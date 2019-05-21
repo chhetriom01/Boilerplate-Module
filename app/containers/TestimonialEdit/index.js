@@ -19,6 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
+import {Link} from 'react-router-dom'
 import {
   getTestimonialByIdRequest,
   putTestimonialByIdRequest,
@@ -54,10 +55,10 @@ export class TestimonialEdit extends React.Component {
           organization: organization,
         },
       });
-      console.log(
-        'this is from component will props',
-        this.props.testomonialGetDatById.toJS(),
-      );
+      // console.log(
+      //   'this is from component will props',
+      //   this.props.testomonialGetDatById.toJS(),
+      // );
     }
   }
 
@@ -74,6 +75,8 @@ export class TestimonialEdit extends React.Component {
       data: data,
     });
   };
+
+
 
   render() {
     return (
@@ -121,7 +124,9 @@ export class TestimonialEdit extends React.Component {
             </Form.Group>
           </Form.Field> */}
           <Button type="Submit">Submit</Button>
-          <Button onClick={this.resetvalue}>Reset</Button>
+          <Link to ='/admin/testimonial/listtestimonial'>
+          <Button onClick={this.resetvalue}>Cancel</Button>
+          </Link>
         </Form>
       </div>
     );

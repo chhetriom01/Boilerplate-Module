@@ -24,7 +24,7 @@ function* redirectOnSuccess() {
 }
 
 function* putDataById(action) {
-  console.log(action, 'from saga');
+  // console.log(action, 'from saga');
   const { data, id } = action;
   const apiUri = `testimonial/${id}`;
   const token = localStorage.getItem('token');

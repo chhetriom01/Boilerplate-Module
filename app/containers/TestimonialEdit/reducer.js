@@ -40,7 +40,7 @@ function testimonialEditReducer(state = initialState, action) {
         loading: true,
       });
     case types.PUT_DATA_BY_ID_SUCCESS:
-      console.log('from success', action.response);
+      // console.log('from success', action.response);
       return state.merge({
         loading: false,
         putTestimonialResponse: action.response,
