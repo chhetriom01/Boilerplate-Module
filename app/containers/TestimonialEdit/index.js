@@ -19,7 +19,10 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
-import { getTestimonialByIdRequest } from './actions';
+import {
+  getTestimonialByIdRequest,
+  putTestimonialByIdRequest,
+} from './actions';
 /* eslint-disable react/prefer-stateless-function */
 export class TestimonialEdit extends React.Component {
   constructor(props) {
@@ -58,6 +61,20 @@ export class TestimonialEdit extends React.Component {
     }
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.putTestimonialByIdRequest(this.state.data,this.props.match.params.id)
+  };
+
+  onInputChange = event => {
+    const field = event.target.name;
+    const data = this.state.data;
+    data[field] = event.target.value;
+    return this.setState({
+      data: data,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -93,7 +110,7 @@ export class TestimonialEdit extends React.Component {
               required
             />
           </Form.Group>
-          <Form.Field>
+          {/* <Form.Field>
             <Form.Group>
               <Form.Input
                 disabled
@@ -102,7 +119,7 @@ export class TestimonialEdit extends React.Component {
                 value={this.props.match.params.id}
               />
             </Form.Group>
-          </Form.Field>
+          </Form.Field> */}
           <Button type="Submit">Submit</Button>
           <Button onClick={this.resetvalue}>Reset</Button>
         </Form>
@@ -128,6 +145,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   getTestimonialByIdRequest: id => dispatch(getTestimonialByIdRequest(id)),
+  putTestimonialByIdRequest: (data,id) => dispatch(putTestimonialByIdRequest(data,id)),
 });
 
 const withConnect = connect(

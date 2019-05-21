@@ -18,7 +18,30 @@ function* getDataById(action) {
   );
 }
 
+function* redirectOnSuccess() {
+  const action = yield take(types.PUT_DATA_BY_ID_SUCCESS);
+  yield put(push('/admin/testimonial/listtestimonial'));
+}
+
+function* putDataById(action) {
+  console.log(action, 'from saga');
+  const { data, id } = action;
+  const apiUri = `testimonial/${id}`;
+  const token = localStorage.getItem('token');
+  const successWatcher = yield fork(redirectOnSuccess);
+  yield fork(
+    XcelTrip.put(
+      apiUri,
+      actions.putTestimonialByIdSuccess,
+      actions.getTestimonialByIdError,
+      data,
+      token,
+    ),
+  );
+}
+
 // Individual exports for testing
 export default function* testimonialEditSaga() {
   yield takeLatest(types.GET_DATA_BY_ID_REQUEST, getDataById);
+  yield takeLatest(types.PUT_DATA_BY_ID_REQUEST, putDataById);
 }
