@@ -14,7 +14,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectTestimonialEdit from './selectors';
+import makeSelectTestimonialEdit, { makeGetDatById } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -26,16 +26,38 @@ export class TestimonialEdit extends React.Component {
     super(props);
     this.state = {
       data: {
-        personName: null,
-        testimonialContent: null,
-        organization: null,
+        personName: '',
+        testimonialContent: '',
+        organization: '',
       },
+      testomonialGetDatById: null,
     };
   }
   componentDidMount() {
     // console.log(this.props.match.params.id,"from index of edit testimonial")
     this.props.getTestimonialByIdRequest(this.props.match.params.id);
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.testomonialGetDatById !== this.props.testomonialGetDatById) {
+      const {
+        personName,
+        testimonialContent,
+        organization,
+      } = nextProps.testomonialGetDatById.toJS();
+      this.setState({
+        data: {
+          personName: personName,
+          testimonialContent: testimonialContent,
+          organization: organization,
+        },
+      });
+      console.log(
+        'this is from component will props',
+        this.props.testomonialGetDatById.toJS(),
+      );
+    }
+  }
+
   render() {
     return (
       <div>
@@ -45,7 +67,7 @@ export class TestimonialEdit extends React.Component {
               label="Person Name"
               placeholder="Enter personName"
               name="personName"
-              // value={this.state.data.personName}
+              value={this.state.data.personName}
               onChange={this.onInputChange}
               required
             />
@@ -56,7 +78,7 @@ export class TestimonialEdit extends React.Component {
               label="Testimonial Content"
               placeholder="testimonialContent"
               name="testimonialContent"
-              // value={this.state.data.testimonialContent}
+              value={this.state.data.testimonialContent}
               onChange={this.onInputChange}
               required
             />
@@ -66,19 +88,20 @@ export class TestimonialEdit extends React.Component {
               label="Organization"
               placeholder="Name of organization"
               name="organization"
-              // value={this.state.data.organization}
+              value={this.state.data.organization}
               onChange={this.onInputChange}
               required
             />
           </Form.Group>
           <Form.Field>
-            {/* <Form.Group> */}
-            <Form.Input
-              label="User_id"
-              readOnly
-              value={this.props.match.params.id}
-            />
-            {/* </Form.Group> */}
+            <Form.Group>
+              <Form.Input
+                disabled
+                label="User_id"
+                readOnly
+                value={this.props.match.params.id}
+              />
+            </Form.Group>
           </Form.Field>
           <Button type="Submit">Submit</Button>
           <Button onClick={this.resetvalue}>Reset</Button>
@@ -94,6 +117,7 @@ export class TestimonialEdit extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   testimonialEdit: makeSelectTestimonialEdit(),
+  testomonialGetDatById: makeGetDatById(),
 });
 
 // function mapDispatchToProps(dispatch) {
@@ -101,6 +125,7 @@ const mapStateToProps = createStructuredSelector({
 //     dispatch,
 //   };
 // }
+
 const mapDispatchToProps = dispatch => ({
   getTestimonialByIdRequest: id => dispatch(getTestimonialByIdRequest(id)),
 });

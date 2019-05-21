@@ -22,5 +22,11 @@ const makeSelectTestimonialEdit = () =>
     substate => substate.toJS(),
   );
 
+const makeGetDatById = () =>
+createSelector(
+  selectTestimonialEditDomain,
+  substate => substate.get("getTestimonialByIdResponse")
+)
+
 export default makeSelectTestimonialEdit;
-export { selectTestimonialEditDomain };
+export { selectTestimonialEditDomain,makeGetDatById };
