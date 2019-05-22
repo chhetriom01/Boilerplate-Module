@@ -19,7 +19,7 @@ export const initialState = fromJS({
 function testimonialEditReducer(state = initialState, action) {
   switch (action.type) {
     case types.SUBMIT_TESTIMONIAL_REQUEST:
-      console.log(action, 'from reducers');
+      // console.log(action, 'from reducers');
       return state.merge({
         loading: true,
       });

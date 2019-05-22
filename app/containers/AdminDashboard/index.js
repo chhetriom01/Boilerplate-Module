@@ -12,10 +12,11 @@ import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
 import ListTestimonial from 'containers/ListTestimonial';
 import TestimonialEdit from 'containers/TestimonialEdit';
-
+import User from 'containers/User';
+import Blog from 'containers/Blog';
 import { SideBar } from '../SideBar';
-import GlobalStyle from '../../global-styles';
-import "./App.css"
+
+import './App.css';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -26,8 +27,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class AdminDashboard extends React.Component {
-  componentWillMount() {}
-
   componentDidMount() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -35,24 +34,37 @@ class AdminDashboard extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {}
-
   render() {
     return (
-      <div className ='main'>
+      <div className="main">
         <NavBar />
         <SideBar />
         <br />
         <Switch>
           <Route exact path="/admin/testimonial" component={Testimonial} />
-          <Route exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
-          <Route exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
-          <Route exact path="/admin/testimonial/testimonialedit/" component={TestimonialEdit} />
-          <Route   path="/admin/testimonial/testimonialedit/:id" component={TestimonialEdit} />
-
-
+          <Route
+            exact
+            path="/admin/testimonial/listtestimonial"
+            component={ListTestimonial}
+          />
+          <Route
+            exact
+            path="/admin/testimonial/listtestimonial"
+            component={ListTestimonial}
+          />
+          <Route
+            exact
+            path="/admin/testimonial/testimonialedit/"
+            component={TestimonialEdit}
+          />
+          <Route
+            path="/admin/testimonial/testimonialedit/:id"
+            component={TestimonialEdit}
+          />
+          <Route path="/admin/user" component={User} />
         </Switch>
-        {/* <GlobalStyle /> */}
+
+        <Route path="/admin/blog" component={Blog} />
       </div>
     );
   }

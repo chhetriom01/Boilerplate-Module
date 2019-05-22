@@ -18,8 +18,8 @@ import makeSelectSideBar from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Sidebar, Menu, Icon, Dropdown, Segment } from 'semantic-ui-react';
-import { Route, Link } from 'react-router-dom';
+import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import { Rote, Link } from 'react-router-dom';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SideBar extends React.Component {
@@ -28,7 +28,6 @@ export class SideBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     return (
-      
       <div className="pusher">
         <div className="full height">
           <div className="toc">
@@ -38,14 +37,17 @@ export class SideBar extends React.Component {
                 to="/admin"
                 name="home"
                 active={activeItem === 'home'}
+                onClick={this.handleItemClick}
               >
                 Home
                 <Icon name="home" />
                 <Menu.Menu />
               </Menu.Item>
               <Menu.Item
-                name="browse"
-                active={activeItem === 'browse'}
+                as={Link}
+                to="/admin/blog"
+                name="-"
+                active={activeItem === 'Blog'}
                 onClick={this.handleItemClick}
               >
                 <Icon name="grid layout" />
@@ -54,12 +56,23 @@ export class SideBar extends React.Component {
               <Menu.Item
                 as={Link}
                 to="/admin/testimonial"
-                name="home"
+                name="-"
                 name="Testimonial"
                 active={activeItem === 'Testimonial'}
+                onClick={this.handleItemClick}
               >
                 <Icon name="warehouse" />
                 Testimonial
+              </Menu.Item>
+              <Menu.Item
+                as={Link}
+                to="/admin/user"
+                name="User"
+                active={activeItem === 'User'}
+                onClick={this.handleItemClick}
+              >
+                <Icon name="user plus" />
+                User
               </Menu.Item>
 
               <Dropdown item text="More">
@@ -71,7 +84,6 @@ export class SideBar extends React.Component {
               </Dropdown>
             </Menu>
           </div>
-          <div className="article" />
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 /*
  *
- * User actions
+ * Blog actions
  *
  */
 
