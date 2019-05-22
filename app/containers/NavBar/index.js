@@ -19,9 +19,10 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Menu, Segment } from 'semantic-ui-react';
-import { Route,Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import AdminDashboard from '../AdminDashboard';
-import {push} from "connected-react-router"
+import { push } from 'connected-react-router';
+import './App.css';
 /* eslint-disable react/prefer-stateless-function */
 
 const divStyle = {
@@ -39,37 +40,45 @@ export class NavBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     return (
-      <div >
-      <div className="pusher" >
-        <Menu pointing secondary>
-          <Menu.Item
-            as={Link}
-            to="/admin"
-            name="home"
-            active={activeItem === 'home'}
-          />
-          <Menu.Item
-            as={Link}
-            to="/admin/testimonial"
-            name="home"
-            name="Testimonial"
-            active={activeItem === 'Testimonial'}
-          />
-          <Menu.Item
-            as={Link}
-            to="/admin/profile"
-            name="Profile"
-            active={activeItem === 'profile'}
-          />
-          <Menu.Menu position="right">
+      <div>
+        <div className="topnav">
+          <a href="#home">About Us</a>
+          <a href="#news">Contact</a>
+          <div className="topnav-right">
+            <a href="#search">Search</a>
+            <a onClick={this.handleLogout}>LogOut</a>
+          </div>
+        </div>
+        {/* <div className="pusher">
+          <Menu pointing secondary>
             <Menu.Item
-              name="logout"
-              active={activeItem === 'logout'}
-              onClick={this.handleLogout}
+              as={Link}
+              to="/admin"
+              name="home"
+              active={activeItem === 'home'}
             />
-          </Menu.Menu>
-        </Menu>
-      </div>
+            <Menu.Item
+              as={Link}
+              to="/admin/testimonial"
+              name="home"
+              name="Testimonial"
+              active={activeItem === 'Testimonial'}
+            />
+            <Menu.Item
+              as={Link}
+              to="/admin/profile"
+              name="Profile"
+              active={activeItem === 'profile'}
+            />
+            <Menu.Menu position="right">
+              <Menu.Item
+                name="logout"
+                active={activeItem === 'logout'}
+                onClick={this.handleLogout}
+              />
+            </Menu.Menu>
+          </Menu>
+        </div> */}
       </div>
     );
   }

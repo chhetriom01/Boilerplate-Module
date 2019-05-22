@@ -28,6 +28,7 @@ export class SideBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     return (
+      
       <div className="pusher">
         <div className="full height">
           <div className="toc">
