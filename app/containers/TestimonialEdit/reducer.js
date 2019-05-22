@@ -6,7 +6,7 @@
 
 import { fromJS } from 'immutable';
 import * as types from './constants';
-// import { stat } from 'fs';
+
 
 export const initialState = fromJS({
   loading: false,

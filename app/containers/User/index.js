@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -18,17 +19,18 @@ import makeSelectUser from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import {Link} from "react-router-dom";
 
 /* eslint-disable react/prefer-stateless-function */
 export class User extends React.Component {
   render() {
     return (
       <div>
-        <Helmet>
-          <title>User</title>
-          <meta name="description" content="Description of User" />
-        </Helmet>
-        <FormattedMessage {...messages.header} />
+        <Link to="/admin/user/useredit/">
+          <Button type="button">Add User</Button>
+        </Link>
+       
+        {/* <FormattedMessage {...messages.header} /> */}
       </div>
     );
   }

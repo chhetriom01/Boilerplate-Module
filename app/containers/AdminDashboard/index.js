@@ -17,6 +17,7 @@ import Blog from 'containers/Blog';
 import { SideBar } from '../SideBar';
 
 import './App.css';
+import { UserEdit } from '../User/UserEdit';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -40,7 +41,14 @@ class AdminDashboard extends React.Component {
         <NavBar />
         <SideBar />
         <br />
+        <div className ="main_data">
         <Switch>
+          <Route path="/admin/blog" component={Blog} />
+
+          <Route exact path="/admin/user" component={User} />
+          <Route path="/admin/user/useredit/" component={UserEdit} />
+
+
           <Route exact path="/admin/testimonial" component={Testimonial} />
           <Route
             exact
@@ -61,10 +69,8 @@ class AdminDashboard extends React.Component {
             path="/admin/testimonial/testimonialedit/:id"
             component={TestimonialEdit}
           />
-          <Route path="/admin/user" component={User} />
         </Switch>
-
-        <Route path="/admin/blog" component={Blog} />
+        </div>
       </div>
     );
   }

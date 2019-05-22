@@ -18,7 +18,7 @@ import makeSelectTestimonialEdit, { makeGetDatById } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import {
   submitTestimonialRequest,
