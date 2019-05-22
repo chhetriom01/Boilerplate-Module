@@ -24,7 +24,8 @@ import { push } from 'connected-react-router';
 
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 import { Switch, Route, Link } from 'react-router-dom';
-// import ListTestimonial from '../ListTestimonial';
+// import { ListTestimonial } from '../ListTestimonial';
+import ListTestimonial from '../ListTestimonial';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -53,15 +54,6 @@ export class Testimonial extends React.Component {
       data: data,
     });
   };
-/* used for the list tesimonial in different ways
-  handleButton = e => {
-    e.preventDefault();
-    console.log('from handle button');
-    // this.props.fetchTestimonialRequest();
-    // this.props.dispatch(fetchRequesting());
-    this.props.redirect('/admin/testimonial/listtestimonial');
-  };
-  */
   resetvalue = () => {
     this.setState({
       data: {
@@ -81,60 +73,13 @@ export class Testimonial extends React.Component {
     const { open, dimmer } = this.state;
     return (
       <div>
-        <Button onClick={this.show('blurring')}>AddTestimonial</Button>
-
-        <Modal dimmer={dimmer} open={open} onClose={this.close} closeIcon>
-          <Modal.Header>Post Testimonial</Modal.Header>
-
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group>
-              <Form.Input
-                label="Person Name"
-                placeholder="Enter personName"
-                name="personName"
-                value={this.state.data.personName}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Input
-                label="Testimonial Content"
-                placeholder="testimonialContent"
-                name="testimonialContent"
-                value={this.state.data.testimonialContent}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Input
-                label="Organization"
-                placeholder="Name of organization"
-                name="organization"
-                value={this.state.data.organization}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group>
-            {/* <Form.Group>
-              <Form.Input
-                label="Message"
-                placeholder="enter your message"
-                name="message"
-                value={this.state.data.message}
-                onChange={this.onInputChange}
-                required
-              />
-            </Form.Group> */}
-            <Button type="Submit">Submit</Button>
-            <Button onClick={this.resetvalue}>Reset</Button>
-          </Form>
-        </Modal>
-        <Link to="/admin/testimonial/listtestimonial">
-          <Button type="button">ListTestimonial</Button>
+        <Link to="/admin/testimonial/testimonialedit/">
+          <Button type="button">Add Testimonial</Button>
         </Link>
+        {/* <Link to="/admin/testimonial/listtestimonial">
+          <Button type="button">ListTestimonial</Button>
+        </Link> */}
+        <ListTestimonial />
       </div>
     );
   }

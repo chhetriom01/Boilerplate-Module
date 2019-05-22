@@ -19,8 +19,9 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import {
+  submitTestimonialRequest,
   getTestimonialByIdRequest,
   putTestimonialByIdRequest,
 } from './actions';
@@ -38,8 +39,10 @@ export class TestimonialEdit extends React.Component {
     };
   }
   componentDidMount() {
+    this.props.match.params.id
+      ? this.props.getTestimonialByIdRequest(this.props.match.params.id)
+      : null;
     // console.log(this.props.match.params.id,"from index of edit testimonial")
-    this.props.getTestimonialByIdRequest(this.props.match.params.id);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.testomonialGetDatById !== this.props.testomonialGetDatById) {
@@ -55,16 +58,18 @@ export class TestimonialEdit extends React.Component {
           organization: organization,
         },
       });
-      // console.log(
-      //   'this is from component will props',
-      //   this.props.testomonialGetDatById.toJS(),
-      // );
+      // console.log('this is from component will props',this.props.testomonialGetDatById.toJS(),);
     }
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.putTestimonialByIdRequest(this.state.data,this.props.match.params.id)
+    this.props.match.params.id
+      ? this.props.putTestimonialByIdRequest(
+          this.state.data,
+          this.props.match.params.id,
+        )
+      : this.props.submitTestimonialRequest(this.state.data);
   };
 
   onInputChange = event => {
@@ -75,8 +80,16 @@ export class TestimonialEdit extends React.Component {
       data: data,
     });
   };
-
-
+  resetvalue = () => {
+    this.setState({
+      data: {
+        personName: '',
+        testimonialContent: '',
+        organization: '',
+        message: '',
+      },
+    });
+  };
 
   render() {
     return (
@@ -124,8 +137,8 @@ export class TestimonialEdit extends React.Component {
             </Form.Group>
           </Form.Field> */}
           <Button type="Submit">Submit</Button>
-          <Link to ='/admin/testimonial/listtestimonial'>
-          <Button onClick={this.resetvalue}>Cancel</Button>
+          <Link to="/admin/testimonial">
+            <Button onClick={this.resetvalue}>Cancel</Button>
           </Link>
         </Form>
       </div>
@@ -149,8 +162,10 @@ const mapStateToProps = createStructuredSelector({
 // }
 
 const mapDispatchToProps = dispatch => ({
+  submitTestimonialRequest: data => dispatch(submitTestimonialRequest(data)),
   getTestimonialByIdRequest: id => dispatch(getTestimonialByIdRequest(id)),
-  putTestimonialByIdRequest: (data,id) => dispatch(putTestimonialByIdRequest(data,id)),
+  putTestimonialByIdRequest: (data, id) =>
+    dispatch(putTestimonialByIdRequest(data, id)),
 });
 
 const withConnect = connect(

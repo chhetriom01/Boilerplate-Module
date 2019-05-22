@@ -10,6 +10,7 @@ import * as types from './constants';
 
 export const initialState = fromJS({
   loading: false,
+  postResponse: {},
   getTestimonialByIdResponse: {},
   putTestimonialResponse: {},
   error: {},
@@ -17,6 +18,25 @@ export const initialState = fromJS({
 
 function testimonialEditReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SUBMIT_TESTIMONIAL_REQUEST:
+      console.log(action, 'from reducers');
+      return state.merge({
+        loading: true,
+      });
+
+    case types.SUBMIT_TESTIMONIAL_SUCCESS:
+      // console.log(action, 'from reducers success');
+      return state.merge({
+        loading: false,
+        postResponse: action,
+      });
+
+    case types.SUBMIT_TESTIMONIAL_ERROR:
+      return state.merge({
+        loading: true,
+        error,
+      });
+
     case types.GET_DATA_BY_ID_REQUEST:
       // console.log('from reducers', action);
       return state.merge({

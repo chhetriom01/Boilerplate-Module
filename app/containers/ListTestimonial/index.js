@@ -71,7 +71,7 @@ export class ListTestimonial extends React.Component {
 
   onEdit = id => {
     this.props.redirect(
-      `/admin/testimonial/listtestimonial/testimonialedit/${id}`,
+      `/admin/testimonial/testimonialedit/${id}`,
     );
   };
 

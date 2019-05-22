@@ -45,9 +45,10 @@ class AdminDashboard extends React.Component {
         <br />
         <Switch>
           <Route exact path="/admin/testimonial" component={Testimonial} />
-          <Route  exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
-          <Route  exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
-          <Route   path="/admin/testimonial/listtestimonial/testimonialedit/:id" component={TestimonialEdit} />
+          <Route exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
+          <Route exact path="/admin/testimonial/listtestimonial" component={ListTestimonial} />
+          <Route exact path="/admin/testimonial/testimonialedit/" component={TestimonialEdit} />
+          <Route   path="/admin/testimonial/testimonialedit/:id" component={TestimonialEdit} />
 
 
         </Switch>
