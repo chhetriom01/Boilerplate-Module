@@ -39,7 +39,7 @@ export class NavBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     return (
-      <div className="nav_bar" style={divStyle}>
+      <div >
       <div className="pusher" >
         <Menu pointing secondary>
           <Menu.Item

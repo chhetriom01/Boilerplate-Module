@@ -15,6 +15,7 @@ import TestimonialEdit from 'containers/TestimonialEdit';
 
 import { SideBar } from '../SideBar';
 import GlobalStyle from '../../global-styles';
+import "./App.css"
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -38,9 +39,9 @@ class AdminDashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className ='main'>
         <NavBar />
-        {/* <SideBar /> */}
+        <SideBar />
         <br />
         <Switch>
           <Route exact path="/admin/testimonial" component={Testimonial} />
@@ -50,7 +51,7 @@ class AdminDashboard extends React.Component {
 
 
         </Switch>
-        <GlobalStyle />
+        {/* <GlobalStyle /> */}
       </div>
     );
   }

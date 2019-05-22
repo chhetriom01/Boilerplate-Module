@@ -18,15 +18,8 @@ import makeSelectSideBar from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import {
-  Sidebar,
-  
-  Menu,
-  Icon,
-  Dropdown,
-  Segment,
-} from 'semantic-ui-react';
-import {Link}  from 'connected-react-router'
+import { Sidebar, Menu, Icon, Dropdown, Segment } from 'semantic-ui-react';
+import { Route, Link } from 'react-router-dom';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SideBar extends React.Component {
@@ -39,7 +32,12 @@ export class SideBar extends React.Component {
         <div className="full height">
           <div className="toc">
             <Menu className="inverted vertical left fixed">
-              <Menu.Item as={Link} to="/admin">
+              <Menu.Item
+                as={Link}
+                to="/admin"
+                name="home"
+                active={activeItem === 'home'}
+              >
                 Home
                 <Icon name="home" />
                 <Menu.Menu />
@@ -53,9 +51,11 @@ export class SideBar extends React.Component {
                 Blog
               </Menu.Item>
               <Menu.Item
-                name="messages"
-                active={activeItem === 'messages'}
-                onClick={this.handleItemClick}
+                as={Link}
+                to="/admin/testimonial"
+                name="home"
+                name="Testimonial"
+                active={activeItem === 'Testimonial'}
               >
                 <Icon name="warehouse" />
                 Testimonial
@@ -70,9 +70,7 @@ export class SideBar extends React.Component {
               </Dropdown>
             </Menu>
           </div>
-          <div className="article">
-            <div>Content</div>
-          </div>
+          <div className="article" />
         </div>
       </div>
     );
