@@ -25,7 +25,7 @@ import { push } from 'connected-react-router';
 import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 import { Switch, Route, Link } from 'react-router-dom';
 // import { ListTestimonial } from '../ListTestimonial';
-import ListTestimonial from '../ListTestimonial';
+import ListTestimonial from './ListTestimonial';
 
 export class Testimonial extends React.Component {
   render() {
