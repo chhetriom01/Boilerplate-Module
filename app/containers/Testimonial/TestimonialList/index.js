@@ -49,6 +49,7 @@ export class ListTestimonial extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(this.props.listTestimonialFromReducer.toJS());
     if (
       nextProps.listTestimonialFromReducer !==
       this.props.listTestimonialFromReducer
@@ -70,16 +71,13 @@ export class ListTestimonial extends React.Component {
   };
 
   onEdit = id => {
-    this.props.redirect(
-      `/admin/testimonial/testimonialedit/${id}`,
-    );
+    this.props.redirect(`/admin/testimonial/testimonialedit/${id}`);
   };
 
   render() {
-
-    console.log(this.state.listTestimonialFromReducer,"from index")
     return (
       <div>
+        <div />
         <Table celled>
           <Table.Header>
             <Table.Row>

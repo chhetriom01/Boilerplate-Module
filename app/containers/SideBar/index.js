@@ -51,7 +51,7 @@ export class SideBar extends React.Component {
                 onClick={this.handleItemClick}
               >
                 <Icon name="grid layout" />
-                Blog
+                Blog 
               </Menu.Item>
               <Menu.Item
                 as={Link}

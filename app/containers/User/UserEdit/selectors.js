@@ -21,5 +21,10 @@ const makeSelectUserEdit = () =>
     substate => substate.toJS(),
   );
 
-export default makeSelectUserEdit;
-export { selectUserEditDomain };
+const makeSelectErrorMessage = () =>
+  createSelector(
+    selectUserEditDomain,
+    state => state.get('error'),
+  );
+
+export { makeSelectUserEdit, makeSelectErrorMessage };

@@ -4,4 +4,6 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/User/DEFAULT_ACTION';
+export const GET_USER_DATA_REQUEST = 'GET_USER_DATA_REQUEST';
+export const GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';
+export const GET_USER_DATA_ERROR = 'GET_USER_DATA_ERROR';

@@ -21,5 +21,10 @@ const makeSelectUser = () =>
     substate => substate.toJS(),
   );
 
-export default makeSelectUser;
-export { selectUserDomain };
+const makeSelectGetResponse = () =>
+  createSelector(
+    selectUserDomain,
+    substate => substate.get('getResponse'),
+  );
+
+export { makeSelectUser, makeSelectGetResponse };

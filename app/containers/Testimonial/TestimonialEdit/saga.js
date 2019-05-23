@@ -34,7 +34,7 @@ function* getDataById(action) {
       apiUri,
       actions.getTestimonialByIdSuccess,
       actions.getTestimonialByIdError,
-      action,
+      id,
     ),
   );
 }

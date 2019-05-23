@@ -4,10 +4,9 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import * as types from './constants';
+import action from 'utils/action';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const getUserDataRequest = action(types.GET_USER_DATA_REQUEST);
+export const getUserDataSuccess = action(types.GET_USER_DATA_SUCCESS,"response");
+export const getUserDataError = action(types.GET_USER_DATA_ERROR,"error");

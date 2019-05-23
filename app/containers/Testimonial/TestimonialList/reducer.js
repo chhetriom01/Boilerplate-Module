@@ -36,7 +36,7 @@ function listTestimonialReducer(state = initialState, action) {
       });
 
     case type.PATCH_TESTIMONIAL_SUCCESS:
-        // console.log("from rpatch success reducer",action.response)
+
       return state.merge({
         loading: false,
         patchResponse: action.response,

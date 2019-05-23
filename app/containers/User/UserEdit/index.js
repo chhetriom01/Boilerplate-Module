@@ -14,7 +14,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectUserEdit from './selectors';
+import { makeSelectUserEdit, makeSelectErrorMessage } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -36,7 +36,25 @@ export class UserEdit extends React.Component {
         securityAnswer: 'momo',
         userRole: 'student',
       },
+      errorMessage: null,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('MSG>>>>>>');
+
+    if (nextProps.errorMessage !== this.props.errorMessage) {
+      let errorMessage = nextProps.errorMessage;
+      // alert(errorMessage);
+      this.setState(
+        {
+          errorMessage,
+        },
+        () => {
+          setTimeout(() => this.setState({ errorMessage: null }), 3000);
+        },
+      );
+    }
   }
 
   onInputChange = e => {
@@ -145,10 +163,11 @@ export class UserEdit extends React.Component {
             />
           </Form.Group>
           <Button type="Submit">Submit</Button>
-          <Link to="/admin/testimonial">
+          <Link to="/admin/user">
             <Button onClick={this.resetvalue}>Cancel</Button>
           </Link>
         </Form>
+        {this.state.errorMessage && this.state.errorMessage}
       </div>
     );
   }
@@ -160,6 +179,7 @@ export class UserEdit extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   userEdit: makeSelectUserEdit(),
+  errorMessage: makeSelectErrorMessage(),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -6,12 +6,15 @@ import XcelTrip from 'utils/apiHelper';
 
 function* postData(action) {
   const apiUri = `user`;
-  console.log(action, 'from saga');
+  const {data} =action;
+  const token = localStorage.getItem('token');
   yield fork(
     XcelTrip.post(
       apiUri,
       actions.postUserDataSuccess,
       actions.postUserDataError,
+      data,
+      token,
     ),
   );
 }

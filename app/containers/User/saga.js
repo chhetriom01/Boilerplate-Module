@@ -1,6 +1,21 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, takeLatest, call, put, fork } from 'redux-saga/effects';
+import XcelTrip from 'utils/apiHelper';
+import * as types from './constants';
+import * as actions from './actions';
 
-// Individual exports for testing
+function* getData() {
+  const token = localStorage.getItem('token');
+  const apiUri = "user";
+  yield fork(
+    XcelTrip.get(
+      apiUri, 
+      actions.getUserDataSuccess, 
+      actions.getUserDataError,
+      token
+      )
+  );
+}
+
 export default function* userSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(types.GET_USER_DATA_REQUEST, getData);
 }

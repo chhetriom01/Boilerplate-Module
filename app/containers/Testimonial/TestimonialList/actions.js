@@ -5,7 +5,7 @@
  */
 
 import * as types from './constants';
-import action from "../../../utils/action"
+import action from "utils/action"
 
 export const fetchTestimonialRequest = action(types.FETCH_TESTIMONIAL_REQUEST);
 export const fetchTestimonialSuccess = action(types.FETCH_TESTIMONIAL_SUCCESS,"response");
