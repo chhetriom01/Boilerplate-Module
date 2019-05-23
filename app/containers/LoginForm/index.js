@@ -14,7 +14,10 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLoginForm from './selectors';
+import makeSelectLoginForm, {
+  makeSelectUserRole,
+  makeSelectErrorMessage,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -36,7 +39,9 @@ export class LoginForm extends React.Component {
     super(props);
     this.state = {
       errors: '',
+      errorMessage: null,
       loginData: {},
+      userRole: null,
       credentials: {
         username: 'superadmin',
         password: 'superadmin@123',
@@ -45,11 +50,9 @@ export class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.loginForm && nextProps.loginForm.toJS(), 'nextpros');
-    if (nextProps.loginForm !== this.props.loginForm) {
-      this.setState({
-        loginData: nextProps.loginForm,
-      });
+    if (nextProps.errorMessage !== this.props.errorMessage) {
+      let errorMessage = nextProps.errorMessage;
+      alert(nextProps.errorMessage);
     }
   }
 
@@ -106,7 +109,6 @@ export class LoginForm extends React.Component {
             </Header>
 
             <Form size="large" onSubmit={this.handleSubmit}>
-              
               <Segment stacked>
                 <Form.Input
                   fluid
@@ -132,8 +134,16 @@ export class LoginForm extends React.Component {
                 <span>{errors.password && errors.password}</span>
                 <Button color="teal" fluid size="large">
                   Login
-                </Button><br />
-                <Button color="green" fluid size="large" onClick={this.resetvalue}>Reset</Button>
+                </Button>
+                <br />
+                <Button
+                  color="green"
+                  fluid
+                  size="large"
+                  onClick={this.resetvalue}
+                >
+                  Reset
+                </Button>
               </Segment>
             </Form>
 
@@ -142,34 +152,6 @@ export class LoginForm extends React.Component {
             </Message>
           </Grid.Column>
         </Grid>
-
-        {/* <Form  size='large' onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Username </label>
-            <input
-              type="text"
-              name="username"
-              value={this.state.credentials.username}
-              onChange={this.onInputChange}
-              placeholder="Enter the username"
-            />
-            <span>{errors.username && errors.username}</span>
-          </Form.Field>
-          <Form.Field>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.credentials.password}
-              onChange={this.onInputChange}
-              placeholder="Enter the password"
-            />
-            <span>{errors.password && errors.password}</span>
-          </Form.Field>
-
-          <Button type="submit">Submit</Button>
-          <Button onClick={this.resetvalue}>Reset</Button>
-        </Form> */}
       </div>
     );
   }
@@ -181,6 +163,8 @@ export class LoginForm extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   loginForm: makeSelectLoginForm(),
+  userRole: makeSelectUserRole(),
+  errorMessage: makeSelectErrorMessage(),
 });
 
 // function mapDispatchToProps(dispatch) {

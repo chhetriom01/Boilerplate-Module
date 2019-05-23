@@ -10,6 +10,7 @@ import * as type from './constants';
 export const initialState = fromJS({
   loading: false,
   loginResponse: {},
+  error : ''
 });
 
 function loginFormReducer(state = initialState, action) {
@@ -20,15 +21,18 @@ function loginFormReducer(state = initialState, action) {
       });
 
     case type.SUBMIT_INFO_SUCCESS:
-      localStorage.setItem('token', action.response.token);
+      const {token ,userInfo:{userRole}} = action.response;
+      localStorage.setItem('token', token);
+      localStorage.setItem('role',userRole);
       return state.merge({
         loading: false,
-        loginResponse: action.response,
+        loginResponse: action.response.userInfo.userRole,
       });
     case type.SUBMIT_INFO_ERROR:
+       console.log(action.error.message)
       return state.merge({
         loading: false,
-        error,
+        error: action.error.message,
       });
     default:
       return state;

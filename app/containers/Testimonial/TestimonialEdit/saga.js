@@ -1,4 +1,4 @@
-import { take, takeLatest, call, put, select, fork } from 'redux-saga/effects';
+import { take, takeLatest, put, fork } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import * as types from './constants';
 import * as actions from './actions';

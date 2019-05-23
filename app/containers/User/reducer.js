@@ -20,7 +20,7 @@ function userReducer(state = initialState, action) {
         loading: true,
       });
     case types.GET_USER_DATA_SUCCESS:
-      console.log('success from reducers of usergetdata ', action.response);
+      // console.log('success from reducers of usergetdata ', action.response);
       return state.merge({
         loading: false,
         getResponse: action.response.dataList,

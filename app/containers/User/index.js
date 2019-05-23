@@ -35,13 +35,14 @@ export class User extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.getUserData.toJS());
     if (nextProps.getUserData !== this.props.getUserDataRequest) {
       this.setState({
         getUserData: nextProps.getUserData.toJS(),
       });
     }
   }
+
+  onDelete = () => {};
 
   render() {
     return (
@@ -58,6 +59,8 @@ export class User extends React.Component {
               <Table.HeaderCell>Last Name</Table.HeaderCell>
               <Table.HeaderCell>User Name</Table.HeaderCell>
               <Table.HeaderCell>User Role</Table.HeaderCell>
+              <Table.HeaderCell>Action</Table.HeaderCell>
+
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -65,30 +68,31 @@ export class User extends React.Component {
               this.state.getUserData.length > 0 &&
               this.state.getUserData.map((value, index) => (
                 <Table.Row key={index}>
-                <Table.Cell>{index + 1}</Table.Cell>
-                <Table.Cell>{value.firstName}</Table.Cell>
-                <Table.Cell>{value.lastName}</Table.Cell>
-                <Table.Cell>{value.username}</Table.Cell>
-                <Table.Cell className="ui two buttons">
-                  {/* <Link to="/admin/testimonial/listtestimonial/testimonialedit/${id}"> */}
-                  <Button
-                    basic
-                    color="green"
-                    onClick={() => this.onEdit(value._id)}
-                  >
-                    Edit
-                  </Button>
-                  {/* </Link> */}
+                  <Table.Cell>{index + 1}</Table.Cell>
+                  <Table.Cell>{value.firstName}</Table.Cell>
+                  <Table.Cell>{value.lastName}</Table.Cell>
+                  <Table.Cell>{value.username}</Table.Cell>
+                  <Table.Cell>{value.userRole}</Table.Cell>
+                  <Table.Cell className="ui two buttons">
+                    {/* <Link to="/admin/testimonial/listtestimonial/testimonialedit/${id}"> */}
+                    <Button
+                      basic
+                      color="green"
+                      onClick={() => this.onEdit(value._id)}
+                    >
+                      Edit
+                    </Button>
+                    {/* </Link> */}
 
-                  <Button
-                    basic
-                    color="red"
-                    onClick={() => this.onDelete(value._id)}
-                  >
-                    Delete
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
+                    <Button
+                      basic
+                      color="red"
+                      onClick={() => this.onDelete(value._id)}
+                    >
+                      Delete
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
               ))}
           </Table.Body>
         </Table>

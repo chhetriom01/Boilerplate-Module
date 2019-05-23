@@ -23,6 +23,7 @@ import { Route, Link } from 'react-router-dom';
 import AdminDashboard from '../AdminDashboard';
 import { push } from 'connected-react-router';
 import './App.css';
+import * as jwt from 'jwt-decode';
 /* eslint-disable react/prefer-stateless-function */
 
 const divStyle = {
@@ -33,19 +34,24 @@ export class NavBar extends React.Component {
   state = {};
   handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.props.dispatch(push('/'));
   };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   render() {
+
     const { activeItem } = this.state;
+    const decoded = jwt(localStorage.getItem('token'));
+    console.log(decoded.user.userRole, 'from navbar');
+
     return (
       <div>
         <div className="topnav">
           <a href="#home">About Us</a>
           <a href="#news">Contact</a>
           <div className="topnav-right">
-            <a href="#search">Search</a>
+            <a>{decoded.user.userRole} </a>
             <a onClick={this.handleLogout}>LogOut</a>
           </div>
         </div>

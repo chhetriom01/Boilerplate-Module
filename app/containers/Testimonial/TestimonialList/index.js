@@ -24,15 +24,7 @@ import messages from './messages';
 import { fetchTestimonialRequest, patchTestimonialRequest } from './actions';
 import { Link } from 'react-router-dom';
 import { push } from 'connected-react-router';
-import {
-  Card,
-  Button,
-  Icon,
-  Label,
-  Menu,
-  Table,
-  TableRow,
-} from 'semantic-ui-react';
+import { Button, Table } from 'semantic-ui-react';
 
 /* eslint-disable react/prefer-stateless-function */
 export class ListTestimonial extends React.Component {
@@ -49,7 +41,7 @@ export class ListTestimonial extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.listTestimonialFromReducer.toJS());
+    // console.log(this.props.listTestimonialFromReducer.toJS());
     if (
       nextProps.listTestimonialFromReducer !==
       this.props.listTestimonialFromReducer
