@@ -76,6 +76,8 @@ export class ListTestimonial extends React.Component {
   };
 
   render() {
+
+    console.log(this.state.listTestimonialFromReducer,"from index")
     return (
       <div>
         <Table celled>

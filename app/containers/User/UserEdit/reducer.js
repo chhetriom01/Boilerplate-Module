@@ -15,7 +15,8 @@ export const initialState = fromJS({
 
 function userEditReducer(state = initialState, action) {
   switch (action.type) {
-    case types.POST_USER_DATA_SUCCESS:
+    case types.POST_USER_DATA_REQUEST:
+      console.log("from the reducer",action)
       return state.merge({
         loading: true,
       });

@@ -145,11 +145,10 @@ export class UserEdit extends React.Component {
             />
           </Form.Group>
           <Button type="Submit">Submit</Button>
-          {/* <Link to="/admin/testimonial">
+          <Link to="/admin/testimonial">
             <Button onClick={this.resetvalue}>Cancel</Button>
-          </Link> */}
+          </Link>
         </Form>
-        {/* <FormattedMessage {...messages.header} /> */}
       </div>
     );
   }
@@ -163,13 +162,8 @@ const mapStateToProps = createStructuredSelector({
   userEdit: makeSelectUserEdit(),
 });
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     dispatch,
-//   };
-// }
 const mapDispatchToProps = dispatch => ({
-  postUserDataRequest: (data) => dispatch(postUserDataRequest(data)),
+  postUserDataRequest: data => dispatch(postUserDataRequest(data)),
 });
 
 const withConnect = connect(

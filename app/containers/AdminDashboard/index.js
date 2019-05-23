@@ -17,7 +17,7 @@ import Blog from 'containers/Blog';
 import { SideBar } from '../SideBar';
 
 import './App.css';
-import { UserEdit } from '../User/UserEdit';
+import UserEdit  from '../User/UserEdit';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
