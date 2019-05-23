@@ -10,7 +10,7 @@ import { push } from 'connected-react-router';
 import NavBar from '../NavBar';
 import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
-import ListTestimonial from 'containers/Testimonial/ListTestimonial';
+import ListTestimonial from 'containers/Testimonial/TestimonialList';
 import TestimonialEdit from 'containers/Testimonial/TestimonialEdit';
 import User from 'containers/User';
 import Blog from 'containers/Blog';
