@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import {push} from 'connected-react-router'
+import { push } from 'connected-react-router';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectLoginForm, {
@@ -52,12 +52,12 @@ export class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.userRole)
+    console.log(nextProps.userRole,"Message from login form next props");
     if (nextProps.userRole !== this.props.userRole) {
-      let role = nextProps.userRole;
-      role === 'superadmin' ? this.props.redirect('/admin') : this.props.redirect('/user');
-
-      console.log(nextProps.userRole, 'from component will recieve props');
+      const role = nextProps.userRole;
+      role === 'superadmin'
+        ? this.props.redirect('/admin')
+        : this.props.redirect('/user');
     }
     if (nextProps.errorMessage !== this.props.errorMessage) {
       let errorMessage = nextProps.errorMessage;
@@ -184,7 +184,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   submitLoginInfoRequest: data => dispatch(submitLoginInfoRequest(data)),
-  redirect: path => dispatch(push(path))
+  redirect: path => dispatch(push(path)),
 });
 
 const withConnect = connect(

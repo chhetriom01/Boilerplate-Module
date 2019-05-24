@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import jwtDecode from 'jwt-decode';
 import { makeSelectUser, makeSelectLocation } from '../App/selectors';
 import AdminRoutes from './Routes';
 import { push } from 'connected-react-router';
@@ -15,9 +14,9 @@ import TestimonialEdit from 'containers/Testimonial/TestimonialEdit';
 import User from 'containers/User';
 import Blog from 'containers/Blog';
 import { SideBar } from '../SideBar';
-
+import * as jwt from 'jwt-decode';
 import './App.css';
-import UserEdit  from '../User/UserEdit';
+import UserEdit from '../User/UserEdit';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -27,15 +26,14 @@ const mapDispatchToProps = dispatch => ({
   redirect: path => dispatch(push(path)),
 });
 
+const decoded = jwt(localStorage.getItem('token'));
+const role = decoded.user.userRole;
+
 class AdminDashboard extends React.Component {
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    // const user = localStorage.getItem('userRole')
-
-    if (!token ) {
+    if (role !== 'superadmin') {
       this.props.redirect('/');
     }
-
   }
 
   render() {
@@ -44,35 +42,34 @@ class AdminDashboard extends React.Component {
         <NavBar />
         <SideBar />
         <br />
-        <div className ="main_data">
-        <Switch>
-          <Route exact path="/admin/blog" component={Blog} />
+        <div className="main_data">
+          <Switch>
+            <Route exact path="/admin/blog" component={Blog} />
 
-          <Route exact path="/admin/user" component={User} />
-          <Route path="/admin/user/useredit/" component={UserEdit} />
+            <Route exact path="/admin/user" component={User} />
+            <Route path="/admin/user/useredit/" component={UserEdit} />
 
-
-          <Route exact path="/admin/testimonial" component={Testimonial} />
-          <Route
-            exact
-            path="/admin/testimonial/listtestimonial"
-            component={ListTestimonial}
-          />
-          <Route
-            exact
-            path="/admin/testimonial/listtestimonial"
-            component={ListTestimonial}
-          />
-          <Route
-            exact
-            path="/admin/testimonial/testimonialedit/"
-            component={TestimonialEdit}
-          />
-          <Route
-            path="/admin/testimonial/testimonialedit/:id"
-            component={TestimonialEdit}
-          />
-        </Switch>
+            <Route exact path="/admin/testimonial" component={Testimonial} />
+            <Route
+              exact
+              path="/admin/testimonial/listtestimonial"
+              component={ListTestimonial}
+            />
+            <Route
+              exact
+              path="/admin/testimonial/listtestimonial"
+              component={ListTestimonial}
+            />
+            <Route
+              exact
+              path="/admin/testimonial/testimonialedit/"
+              component={TestimonialEdit}
+            />
+            <Route
+              path="/admin/testimonial/testimonialedit/:id"
+              component={TestimonialEdit}
+            />
+          </Switch>
         </div>
       </div>
     );

@@ -18,12 +18,26 @@ import makeSelectDashBoardUser from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import {push} from 'connected-react-router'
-import './App.css'
+
+import * as jwt from 'jwt-decode';
+import { push } from 'connected-react-router';
+
+
+import './App.css';
+
+// const decoded = jwt(localStorage.getItem('token'));
+// const role = decoded.user.userRole;
 
 /* eslint-disable react/prefer-stateless-function */
 export class DashBoardUser extends React.Component {
   state = {};
+
+  // componentDidMount() {
+  //   if(role !== 'student'){
+  //     this.props.redirect('/');
+  //   }
+  // }
+
   handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userRole');
@@ -35,8 +49,6 @@ export class DashBoardUser extends React.Component {
     const { activeItem } = this.state;
     // const decoded = jwt(localStorage.getItem('token'));
     // console.log(decoded.user.userRole, 'from navbar');
-
-
 
     return (
       <div>
@@ -62,11 +74,9 @@ const mapStateToProps = createStructuredSelector({
   dashBoardUser: makeSelectDashBoardUser(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  redirect: path => dispatch(push(path)),
+});
 
 const withConnect = connect(
   mapStateToProps,

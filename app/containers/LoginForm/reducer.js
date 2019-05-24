@@ -22,9 +22,8 @@ function loginFormReducer(state = initialState, action) {
       });
 
     case type.SUBMIT_INFO_SUCCESS:
-      const {token ,userInfo:{userRole}} = action.response;
-      localStorage.setItem('token', token);
-      localStorage.setItem('userRole',userRole);
+      // const {token ,userInfo:{userRole}} = action.response;
+      localStorage.setItem('token', action.response.token);
       return state.merge({
         loading: false,
         loginResponse: action.response.userInfo.userRole,
