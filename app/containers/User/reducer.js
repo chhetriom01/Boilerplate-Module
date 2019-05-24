@@ -31,6 +31,22 @@ function userReducer(state = initialState, action) {
         loading: true,
         error: action.error.message,
       });
+
+    case types.PATCH_USER_DATA_REQUEST:
+      return state.merge({
+        loading: true,
+      });
+    case types.POST_USER_DATA_SUCCESS:
+      return state.merge({
+        loading: false,
+        getResponse: action.response,
+      });
+
+    case types.PATCH_USER_DATA_ERROR:
+      return state.merge({
+        loading: true,
+        error: action.error.message,
+      });
     default:
       return state;
   }

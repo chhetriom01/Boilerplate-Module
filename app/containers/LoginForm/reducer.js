@@ -16,6 +16,7 @@ export const initialState = fromJS({
 function loginFormReducer(state = initialState, action) {
   switch (action.type) {
     case type.SUBMIT_INFO_REQUEST:
+
       return state.merge({
         loading: true,
       });
@@ -23,7 +24,7 @@ function loginFormReducer(state = initialState, action) {
     case type.SUBMIT_INFO_SUCCESS:
       const {token ,userInfo:{userRole}} = action.response;
       localStorage.setItem('token', token);
-      localStorage.setItem('role',userRole);
+      localStorage.setItem('userRole',userRole);
       return state.merge({
         loading: false,
         loginResponse: action.response.userInfo.userRole,

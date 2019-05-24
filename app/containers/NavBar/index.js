@@ -34,16 +34,17 @@ export class NavBar extends React.Component {
   state = {};
   handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.removeItem('userRole');
     this.props.dispatch(push('/'));
   };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   render() {
-
     const { activeItem } = this.state;
-    const decoded = jwt(localStorage.getItem('token'));
-    console.log(decoded.user.userRole, 'from navbar');
+    // const decoded = jwt(localStorage.getItem('token'));
+    // console.log(decoded.user.userRole, 'from navbar');
+
+
 
     return (
       <div>
@@ -51,40 +52,10 @@ export class NavBar extends React.Component {
           <a href="#home">About Us</a>
           <a href="#news">Contact</a>
           <div className="topnav-right">
-            <a>{decoded.user.userRole} </a>
+            {/* <a>{decoded.user.userRole} </a> */}
             <a onClick={this.handleLogout}>LogOut</a>
           </div>
         </div>
-        {/* <div className="pusher">
-          <Menu pointing secondary>
-            <Menu.Item
-              as={Link}
-              to="/admin"
-              name="home"
-              active={activeItem === 'home'}
-            />
-            <Menu.Item
-              as={Link}
-              to="/admin/testimonial"
-              name="home"
-              name="Testimonial"
-              active={activeItem === 'Testimonial'}
-            />
-            <Menu.Item
-              as={Link}
-              to="/admin/profile"
-              name="Profile"
-              active={activeItem === 'profile'}
-            />
-            <Menu.Menu position="right">
-              <Menu.Item
-                name="logout"
-                active={activeItem === 'logout'}
-                onClick={this.handleLogout}
-              />
-            </Menu.Menu>
-          </Menu>
-        </div> */}
       </div>
     );
   }

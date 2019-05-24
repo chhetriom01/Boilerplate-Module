@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import {push} from 'connected-react-router'
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectLoginForm, {
@@ -22,6 +22,8 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { submitLoginInfoRequest } from './actions';
+import { Link } from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
 
 import {
   Button,
@@ -50,6 +52,13 @@ export class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.userRole)
+    if (nextProps.userRole !== this.props.userRole) {
+      let role = nextProps.userRole;
+      role === 'superadmin' ? this.props.redirect('/admin') : this.props.redirect('/user');
+
+      console.log(nextProps.userRole, 'from component will recieve props');
+    }
     if (nextProps.errorMessage !== this.props.errorMessage) {
       let errorMessage = nextProps.errorMessage;
       alert(nextProps.errorMessage);
@@ -175,6 +184,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   submitLoginInfoRequest: data => dispatch(submitLoginInfoRequest(data)),
+  redirect: path => dispatch(push(path))
 });
 
 const withConnect = connect(

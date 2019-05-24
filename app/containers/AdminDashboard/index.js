@@ -30,9 +30,12 @@ const mapDispatchToProps = dispatch => ({
 class AdminDashboard extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem('token');
-    if (!token) {
+    // const user = localStorage.getItem('userRole')
+
+    if (!token ) {
       this.props.redirect('/');
     }
+
   }
 
   render() {
@@ -43,7 +46,7 @@ class AdminDashboard extends React.Component {
         <br />
         <div className ="main_data">
         <Switch>
-          <Route path="/admin/blog" component={Blog} />
+          <Route exact path="/admin/blog" component={Blog} />
 
           <Route exact path="/admin/user" component={User} />
           <Route path="/admin/user/useredit/" component={UserEdit} />

@@ -45,7 +45,7 @@ export class UserEdit extends React.Component {
 
     if (nextProps.errorMessage !== this.props.errorMessage) {
       let errorMessage = nextProps.errorMessage;
-      // alert(errorMessage);
+      alert(errorMessage);
       this.setState(
         {
           errorMessage,

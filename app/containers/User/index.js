@@ -42,7 +42,9 @@ export class User extends React.Component {
     }
   }
 
-  onDelete = () => {};
+  onDelete = () => {
+    
+  };
 
   render() {
     return (

@@ -40,6 +40,7 @@ class App extends React.Component {
     ownDashboard: true,
   };
 
+
   componentWillMount() {
     // this.props.loadInitialData();
     // todo move this to initialize saga
