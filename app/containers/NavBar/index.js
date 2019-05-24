@@ -26,9 +26,7 @@ import './App.css';
 import * as jwt from 'jwt-decode';
 /* eslint-disable react/prefer-stateless-function */
 
-const divStyle = {
-  flex: 1,
-};
+
 
 export class NavBar extends React.Component {
   state = {};

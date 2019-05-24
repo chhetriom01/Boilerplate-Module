@@ -32,20 +32,20 @@ class Routes extends React.Component {
 
   render() {
     const userRole = localStorage.getItem('userRole');
-    // console.log('from app', userRole);
-    // if (userRole === 'superadmin') {
-    //   return (
-    //     <div>
-    //       <Route path="/admin" component={AdminDashboard} />
-    //     </div>
-    //   );
-    // }
+    console.log('from app', userRole);
+    if (userRole === 'superadmin') {
+      return (
+        <div>
+          <Route path="/admin" component={AdminDashboard} />
+        </div>
+      );
+    }
 
     return (
       <Switch location={this.props.location}>
         <Route exact path="/" render={props => <HomePage {...props} />} />
         <Route exact path="/login" component={LoginForm} />
-        <Route path="/admin" component={AdminDashboard} />
+        {/* <Route path="/admin" component={AdminDashboard} /> */}
 
         <Route  path="/user" component={DashBoadUser} />
 
