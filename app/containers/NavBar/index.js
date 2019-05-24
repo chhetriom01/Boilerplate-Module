@@ -26,8 +26,6 @@ import './App.css';
 import * as jwt from 'jwt-decode';
 /* eslint-disable react/prefer-stateless-function */
 
-
-
 export class NavBar extends React.Component {
   state = {};
   handleLogout = () => {
@@ -39,10 +37,6 @@ export class NavBar extends React.Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   render() {
     const { activeItem } = this.state;
-    // const decoded = jwt(localStorage.getItem('token'));
-    // console.log(decoded.user.userRole, 'from navbar');
-
-
 
     return (
       <div>
