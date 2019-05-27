@@ -18,13 +18,13 @@ function* fetchData() {
 
 function* patchData(action) {
   const { id } = action;
-  const apiUri = `testimonial/${id}`,
-    token = localStorage.getItem('token');
+  const apiUri = `testimonial/${id}`;
+  const  token = localStorage.getItem('token');
   yield fork(
     XcelTrip.patch(
       apiUri,
       actions.patchTestimonialSuccess,
-      actions.fetchTestimonialError,
+      actions.patchTestimonialError,
       {},
       token,
     ),

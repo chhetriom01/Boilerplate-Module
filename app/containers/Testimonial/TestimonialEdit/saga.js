@@ -35,6 +35,7 @@ function* getDataById(action) {
       actions.getTestimonialByIdSuccess,
       actions.getTestimonialByIdError,
       id,
+      
     ),
   );
 }

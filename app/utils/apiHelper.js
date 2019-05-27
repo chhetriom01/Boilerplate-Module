@@ -10,6 +10,7 @@ class XcelTrip {
    * Generic api data loader
    */
   static dataLoader(apiUri, onSuccess, onError, data, token, metaData = '', ...actionArguments) {
+
     return function*() {
       // const baseUrl = metaData === 'flight' ? FLIGHT_API_BASE : API_BASE;
       const baseUrl = API_BASE;
@@ -34,10 +35,11 @@ class XcelTrip {
               'Content-Type': 'application/json',
               'X-Requested-With': 'XMLHttpRequest',
               // 'Access-Control-Allow-Origin': '*',
-              Authorization: token, //? `${usertoken}` : undefined
+              Authorization : token, //? `${usertoken}` : undefined
             },
           };
         }
+        
         const response = yield call(requestJSON, requestURL, options);
         yield put(onSuccess(response, data, metaData, ...actionArguments));
       } catch (err) {
@@ -183,6 +185,7 @@ class XcelTrip {
    * Shorthand PATCH function
    */
   static patch(apiUri, onSuccess, onError, data = {}, token, ...actionArguments) {
+
     return function*() {
       const requestURL = `${API_BASE}${apiUri}`;
       try {

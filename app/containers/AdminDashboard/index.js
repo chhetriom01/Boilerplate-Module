@@ -26,11 +26,11 @@ const mapDispatchToProps = dispatch => ({
   redirect: path => dispatch(push(path)),
 });
 
-const decoded = jwt(localStorage.getItem('token'));
-const role = decoded.user.userRole;
-
 class AdminDashboard extends React.Component {
   componentDidMount() {
+    const decoded = jwt(localStorage.getItem('token'));
+    const role = decoded.user.userRole;
+    // console.log("from admin dashboard",decoded)
     if (role !== 'superadmin') {
       this.props.redirect('/');
     }
@@ -47,7 +47,8 @@ class AdminDashboard extends React.Component {
             <Route exact path="/admin/blog" component={Blog} />
 
             <Route exact path="/admin/user" component={User} />
-            <Route path="/admin/user/useredit/" component={UserEdit} />
+            <Route exact path="/admin/user/useredit/" component={UserEdit} />
+            <Route path="/admin/user/useredit/:id" component={UserEdit} />
 
             <Route exact path="/admin/testimonial" component={Testimonial} />
             <Route

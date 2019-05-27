@@ -20,7 +20,9 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Link } from 'react-router-dom';
-import { getUserDataRequest } from './actions';
+import { getUserDataRequest, patchUserDataRequest } from './actions';
+import { push } from 'connected-react-router';
+
 /* eslint-disable react/prefer-stateless-function */
 export class User extends React.Component {
   constructor(props) {
@@ -40,10 +42,15 @@ export class User extends React.Component {
         getUserData: nextProps.getUserData.toJS(),
       });
     }
+    // if (nextProps.)
   }
 
-  onDelete = () => {
-    
+  onEdit = id => {
+    this.props.redirect(`/admin/user/useredit/${id}`);
+  };
+
+  onDelete = id => {
+    this.props.patchUserDataRequest(id);
   };
 
   render() {
@@ -62,9 +69,9 @@ export class User extends React.Component {
               <Table.HeaderCell>User Name</Table.HeaderCell>
               <Table.HeaderCell>User Role</Table.HeaderCell>
               <Table.HeaderCell>Action</Table.HeaderCell>
-
             </Table.Row>
           </Table.Header>
+
           <Table.Body>
             {this.state.getUserData &&
               this.state.getUserData.length > 0 &&
@@ -112,13 +119,10 @@ const mapStateToProps = createStructuredSelector({
   getUserData: makeSelectGetResponse(),
 });
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     dispatch,
-//   };
-// }
 const mapDispatchToProps = dispatch => ({
   getUserDataRequest: () => dispatch(getUserDataRequest()),
+  patchUserDataRequest: id => dispatch(patchUserDataRequest(id)),
+  redirect: path => dispatch(push(path)),
 });
 
 const withConnect = connect(

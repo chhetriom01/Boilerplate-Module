@@ -7,7 +7,6 @@
 import { fromJS } from 'immutable';
 import * as types from './constants';
 
-
 export const initialState = fromJS({
   loading: false,
   postResponse: {},

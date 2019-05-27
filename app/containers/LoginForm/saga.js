@@ -13,7 +13,7 @@ function* redirectOnSuccess() {
 
 function* fetchData(action) {
   const { data } = action;
-  // const successWatcher = yield fork(redirectOnSuccess);
+  const successWatcher = yield fork(redirectOnSuccess);
   yield fork(
     XcelTrip.post(
       apiUri,

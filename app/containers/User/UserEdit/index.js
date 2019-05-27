@@ -20,7 +20,7 @@ import saga from './saga';
 import messages from './messages';
 import { Button, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { postUserDataRequest } from './actions';
+import { postUserDataRequest, getUserDataByIdRequest } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class UserEdit extends React.Component {
@@ -39,9 +39,15 @@ export class UserEdit extends React.Component {
       errorMessage: null,
     };
   }
+  componentDidMount() {
+    this.props.match.params.id
+      ? this.props.getUserDataByIdRequest(this.props.match.params.id)
+      : false;
+    // console.log(this.props.match.params.id,"from index of edit testimonial")
+  }
 
   componentWillReceiveProps(nextProps) {
-    console.log('MSG>>>>>>');
+    // console.log('MSG>>>>>>');
 
     if (nextProps.errorMessage !== this.props.errorMessage) {
       let errorMessage = nextProps.errorMessage;
@@ -67,7 +73,6 @@ export class UserEdit extends React.Component {
   };
 
   handleSubmit = event => {
-    // debugger;
     event.preventDefault();
     this.props.postUserDataRequest(this.state.data);
   };
@@ -184,6 +189,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   postUserDataRequest: data => dispatch(postUserDataRequest(data)),
+  getUserDataByIdRequest: id => dispatch(getUserDataByIdRequest(id)),
 });
 
 const withConnect = connect(

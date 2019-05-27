@@ -23,15 +23,15 @@ import * as jwt from 'jwt-decode';
 import { push } from 'connected-react-router';
 import './App.css';
 
-const decoded = jwt(localStorage.getItem('token'));
-const role = decoded.user.userRole;
 
-/* eslint-disable react/prefer-stateless-function */
 export class DashBoardUser extends React.Component {
+  debugger;
   state = {};
 
   componentDidMount() {
-    if(role !== 'student'){
+    const decoded = jwt(localStorage.getItem('token'));
+    const role = decoded.user.userRole;
+    if (role !== 'student') {
       this.props.redirect('/');
     }
   }

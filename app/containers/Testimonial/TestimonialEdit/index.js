@@ -41,7 +41,7 @@ export class TestimonialEdit extends React.Component {
   componentDidMount() {
     this.props.match.params.id
       ? this.props.getTestimonialByIdRequest(this.props.match.params.id)
-      : null;
+      : false;
     // console.log(this.props.match.params.id,"from index of edit testimonial")
   }
   componentWillReceiveProps(nextProps) {
@@ -58,7 +58,7 @@ export class TestimonialEdit extends React.Component {
           organization: organization,
         },
       });
-      // console.log('this is from component will props',this.props.testomonialGetDatById.toJS(),);
+      console.log('this is from component will props',this.props.testomonialGetDatById.toJS(),);
     }
   }
 
