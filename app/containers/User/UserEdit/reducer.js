@@ -12,6 +12,7 @@ export const initialState = fromJS({
   laoding: false,
   error: '',
   getUserData: {},
+  getResponse: {},
 });
 
 function userEditReducer(state = initialState, action) {
@@ -27,7 +28,7 @@ function userEditReducer(state = initialState, action) {
         postResponse: action.response,
       });
     case types.POST_USER_DATA_ERROR:
-      console.log('from reducer of  useredit Error', action.error);
+      // console.log('from reducer of  useredit Error', action.error);
       return state.merge({
         laoding: true,
         error: action.error.message,
@@ -38,7 +39,7 @@ function userEditReducer(state = initialState, action) {
         laoding: true,
       });
     case types.GET_USER_DATA_BY_ID_SUCCESS:
-      console.log('from success', action.response);
+      // console.log('from success', action.response);
       return state.merge({
         laoding: true,
         getResponse: action.response,

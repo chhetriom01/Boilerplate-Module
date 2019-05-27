@@ -20,6 +20,11 @@ const makeSelectUserEdit = () =>
     selectUserEditDomain,
     substate => substate.toJS(),
   );
+const makeSelectUserDataById = () =>
+  createSelector(
+    selectUserEditDomain,
+    substate => substate.get('getResponse'),
+  );
 
 const makeSelectErrorMessage = () =>
   createSelector(
@@ -27,4 +32,4 @@ const makeSelectErrorMessage = () =>
     state => state.get('error'),
   );
 
-export { makeSelectUserEdit, makeSelectErrorMessage };
+export { makeSelectUserEdit, makeSelectErrorMessage, makeSelectUserDataById };

@@ -30,7 +30,7 @@ const makeSelectGetResponse = () =>
 const makePatchResponse = () =>
   createSelector(
     selectUserDomain,
-    substate => substate.get('getResponse'),
+    substate => substate.get('patchResponse'),
   );
 
 export { makeSelectUser, makeSelectGetResponse,makePatchResponse };

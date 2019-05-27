@@ -33,6 +33,7 @@ export class User extends React.Component {
     super(props);
     this.state = {
       getUserData: null,
+      deleteUserData: null,
     };
   }
 
@@ -41,15 +42,12 @@ export class User extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.getUserData !== this.props.getUserDataRequest) {
+    if (nextProps.getUserData !== this.props.getUserData) {
       this.setState({
         getUserData: nextProps.getUserData.toJS(),
       });
     }
-    if (
-      nextProps.deleteUserData !== '' &&
-      nextProps.deleteUserData !== this.props.deleteUserData
-    ) {
+    if (nextProps.deleteUserData !== this.props.deleteUserData) {
       this.props.getUserDataRequest();
     }
   }

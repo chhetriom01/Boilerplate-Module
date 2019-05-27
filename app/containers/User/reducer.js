@@ -10,6 +10,7 @@ import * as types from './constants';
 export const initialState = fromJS({
   loading: false,
   getResponse: {},
+  patchResponse :{},
   error: '',
 });
 
@@ -37,7 +38,7 @@ function userReducer(state = initialState, action) {
     case types.PATCH_USER_DATA_SUCCESS:
       return state.merge({
         loading: false,
-        getResponse: action.response,
+        patchResponse: action.response,
       });
 
     case types.PATCH_USER_DATA_ERROR:

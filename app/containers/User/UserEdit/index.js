@@ -14,7 +14,11 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { makeSelectUserEdit, makeSelectErrorMessage } from './selectors';
+import {
+  makeSelectUserEdit,
+  makeSelectErrorMessage,
+  makeSelectUserDataById,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -37,18 +41,33 @@ export class UserEdit extends React.Component {
         userRole: 'student',
       },
       errorMessage: null,
+      getDataById: null,
     };
   }
   componentDidMount() {
     this.props.match.params.id
       ? this.props.getUserDataByIdRequest(this.props.match.params.id)
       : false;
-    // console.log(this.props.match.params.id,"from index of edit testimonial")
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('MSG>>>>>>');
-
+    if (nextProps.getDataById !== this.props.getDataById) {
+      // console.log('from next props', nextProps.getDataById.toJS());
+      const {
+        firstName,
+        lastName,
+        email,
+        userRole,
+      } = nextProps.getDataById.toJS();
+      this.setState({
+        data: {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          userRole: userRole,
+        },
+      });
+    }
     if (nextProps.errorMessage !== this.props.errorMessage) {
       let errorMessage = nextProps.errorMessage;
       alert(errorMessage);
@@ -92,6 +111,8 @@ export class UserEdit extends React.Component {
   };
 
   render() {
+    const id = this.props.match.params.id;
+
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -105,13 +126,22 @@ export class UserEdit extends React.Component {
               required
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Input
               label="Last Name"
               placeholder="LastName"
               name="lastName"
               value={this.state.data.lastName}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+            <Form.Group>
+            <Form.Input
+              label="User Role"
+              placeholder="Enter the User Role"
+              name="userRole"
+              value={this.state.data.userRole}
               onChange={this.onInputChange}
               required
             />
@@ -127,45 +157,47 @@ export class UserEdit extends React.Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Input
-              label="Password"
-              type="password"
-              placeholder="Enter the password"
-              name="password"
-              value={this.state.data.password}
-              onChange={this.onInputChange}
-              required
-            />
+            {!id ? (
+              <Form.Input
+                label="Password"
+                type="password"
+                placeholder="Enter the password"
+                name="password"
+                value={this.state.data.password}
+                onChange={this.onInputChange}
+                required
+              />
+            ) : (
+              false
+            )}
           </Form.Group>
           <Form.Group>
-            <Form.Input
-              label="Seccuruty Question"
-              placeholder="Security Question"
-              name="securityQuestion"
-              value={this.state.data.securityQuestion}
-              onChange={this.onInputChange}
-              required
-            />
+            {!id ? (
+              <Form.Input
+                label="Security Question"
+                placeholder="Security Question"
+                name="securityQuestion"
+                value={this.state.data.securityQuestion}
+                onChange={this.onInputChange}
+                required
+              />
+            ) : (
+              false
+            )}
           </Form.Group>
           <Form.Group>
-            <Form.Input
-              label="Secuirty Answer"
-              placeholder="enter Security answer"
-              name="securityAnswer"
-              value={this.state.data.securityAnswer}
-              onChange={this.onInputChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Input
-              label="User Role"
-              placeholder="Enter the User Role"
-              name="userRole"
-              value={this.state.data.userRole}
-              onChange={this.onInputChange}
-              required
-            />
+            {!id ? (
+              <Form.Input
+                label="Secuirty Answer"
+                placeholder="enter Security answer"
+                name="securityAnswer"
+                value={this.state.data.securityAnswer}
+                onChange={this.onInputChange}
+                required
+              />
+            ) : (
+              false
+            )}
           </Form.Group>
           <Button type="Submit">Submit</Button>
           <Link to="/admin/user">
@@ -185,6 +217,7 @@ export class UserEdit extends React.Component {
 const mapStateToProps = createStructuredSelector({
   userEdit: makeSelectUserEdit(),
   errorMessage: makeSelectErrorMessage(),
+  getDataById: makeSelectUserDataById(),
 });
 
 const mapDispatchToProps = dispatch => ({
