@@ -24,7 +24,11 @@ import saga from './saga';
 import messages from './messages';
 import { Button, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { postUserDataRequest, getUserDataByIdRequest } from './actions';
+import {
+  postUserDataRequest,
+  getUserDataByIdRequest,
+  putUserDataByIdRequest,
+} from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class UserEdit extends React.Component {
@@ -32,8 +36,8 @@ export class UserEdit extends React.Component {
     super(props);
     this.state = {
       data: {
-        firstName: 'Manish',
-        lastName: 'Chhetri',
+        firstName: '',
+        lastName: '',
         email: 'om@yopmail.com',
         password: 'manish',
         securityQuestion: 'favourite food',
@@ -93,7 +97,12 @@ export class UserEdit extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.postUserDataRequest(this.state.data);
+    this.props.match.params.id
+      ? this.props.putUserDataByIdRequest(
+          this.state.data,
+          this.props.match.params.id,
+        )
+      : this.props.postUserDataRequest(this.state.data);
   };
 
   resetvalue = () => {
@@ -136,7 +145,7 @@ export class UserEdit extends React.Component {
               required
             />
           </Form.Group>
-            <Form.Group>
+          <Form.Group>
             <Form.Input
               label="User Role"
               placeholder="Enter the User Role"
@@ -223,6 +232,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   postUserDataRequest: data => dispatch(postUserDataRequest(data)),
   getUserDataByIdRequest: id => dispatch(getUserDataByIdRequest(id)),
+  putUserDataByIdRequest: (data, id) =>
+    dispatch(putUserDataByIdRequest(data, id)),
 });
 
 const withConnect = connect(

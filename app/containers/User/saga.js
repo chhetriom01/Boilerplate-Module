@@ -6,6 +6,7 @@ const token = localStorage.getItem('token');
 
 function* getData() {
   const apiUri = 'user';
+  
   yield fork(
     XcelTrip.get(
       apiUri,

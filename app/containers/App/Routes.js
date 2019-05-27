@@ -8,7 +8,7 @@ import { makeSelectLocation } from './selectors';
 import HomePage from 'containers/HomePage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage';
-import AdminDashboard from 'containers/AdminDashboard/Loadable';
+import AdminDashboard from 'containers/AdminDashboard';
 import DashBoadUser from '../DashBoardUser';
 
 import LoginForm from 'containers/LoginForm/';
