@@ -25,7 +25,7 @@ function* patchData(action) {
       apiUri,
       actions.patchUserDataSuccess,
       actions.patchUserDataError,
-      {},
+      {"deleted":"true"},
       token,
     ),
   );

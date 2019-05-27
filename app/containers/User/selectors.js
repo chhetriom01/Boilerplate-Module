@@ -27,4 +27,10 @@ const makeSelectGetResponse = () =>
     substate => substate.get('getResponse'),
   );
 
-export { makeSelectUser, makeSelectGetResponse };
+const makePatchResponse = () =>
+  createSelector(
+    selectUserDomain,
+    substate => substate.get('getResponse'),
+  );
+
+export { makeSelectUser, makeSelectGetResponse,makePatchResponse };

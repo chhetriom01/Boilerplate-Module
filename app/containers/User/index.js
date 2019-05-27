@@ -15,7 +15,11 @@ import { Button, Table } from 'semantic-ui-react';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { makeSelectUser, makeSelectGetResponse } from './selectors';
+import {
+  makeSelectUser,
+  makeSelectGetResponse,
+  makePatchResponse,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -42,7 +46,12 @@ export class User extends React.Component {
         getUserData: nextProps.getUserData.toJS(),
       });
     }
-    // if (nextProps.)
+    if (
+      nextProps.deleteUserData !== '' &&
+      nextProps.deleteUserData !== this.props.deleteUserData
+    ) {
+      this.props.getUserDataRequest();
+    }
   }
 
   onEdit = id => {
@@ -117,6 +126,7 @@ export class User extends React.Component {
 const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
   getUserData: makeSelectGetResponse(),
+  deleteUserData: makePatchResponse(),
 });
 
 const mapDispatchToProps = dispatch => ({

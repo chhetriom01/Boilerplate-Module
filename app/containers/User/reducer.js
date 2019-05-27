@@ -20,13 +20,11 @@ function userReducer(state = initialState, action) {
         loading: true,
       });
     case types.GET_USER_DATA_SUCCESS:
-      // console.log('success from reducers of usergetdata ', action.response);
       return state.merge({
         loading: false,
         getResponse: action.response.dataList,
       });
     case types.GET_USER_DATA_ERROR:
-      // console.log('Error from reucers of user get data ', action.error);
       return state.merge({
         loading: true,
         error: action.error.message,
@@ -37,14 +35,12 @@ function userReducer(state = initialState, action) {
         loading: true,
       });
     case types.PATCH_USER_DATA_SUCCESS:
-      console.log('from reducer of succes patch', action.response);
       return state.merge({
         loading: false,
         getResponse: action.response,
       });
 
     case types.PATCH_USER_DATA_ERROR:
-      console.log('from patch error of user', action.error.message);
       return state.merge({
         loading: true,
         error: action.error.message,
