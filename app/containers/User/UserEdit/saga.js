@@ -46,7 +46,6 @@ function* redirectOnSuccesss() {
 
 function* putDataById(action) {
   const { data, id } = action;
-  console.log("from saga of put",data,id);
   const apiUri = `user/${id}`;
   const token = localStorage.getItem('token');
   const successWatcher = yield fork(redirectOnSuccesss);

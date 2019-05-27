@@ -42,7 +42,7 @@ export class User extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.getUserData !== this.props.getUserData) {
+    if (nextProps.getUserData !== '' && nextProps.getUserData !== this.props.getUserData) {
       this.setState({
         getUserData: nextProps.getUserData.toJS(),
       });
