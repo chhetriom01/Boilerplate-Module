@@ -12,6 +12,7 @@ import Testimonial from 'containers/Testimonial';
 import ListTestimonial from 'containers/Testimonial/TestimonialList';
 import TestimonialEdit from 'containers/Testimonial/TestimonialEdit';
 import User from 'containers/User';
+import Token from 'containers/Token'
 import Blog from 'containers/Blog';
 import { SideBar } from '../SideBar';
 import * as jwt from 'jwt-decode';
@@ -46,10 +47,6 @@ class AdminDashboard extends React.Component {
           <Switch>
             <Route exact path="/admin/blog" component={Blog} />
 
-            <Route exact path="/admin/user" component={User} />
-            <Route exact path="/admin/user/useredit/" component={UserEdit} />
-            <Route path="/admin/user/useredit/:id" component={UserEdit} />
-
             <Route exact path="/admin/testimonial" component={Testimonial} />
             <Route
               exact
@@ -70,6 +67,11 @@ class AdminDashboard extends React.Component {
               path="/admin/testimonial/testimonialedit/:id"
               component={TestimonialEdit}
             />
+            <Route exact path="/admin/user" component={User} />
+            <Route exact path="/admin/user/useredit/" component={UserEdit} />
+            <Route path="/admin/user/useredit/:id" component={UserEdit} />
+
+            <Route path ='/admin/token' component ={Token} />
           </Switch>
         </div>
       </div>

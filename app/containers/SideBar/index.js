@@ -75,6 +75,17 @@ export class SideBar extends React.Component {
                 User
               </Menu.Item>
 
+              <Menu.Item
+                as={Link}
+                to="/admin/token"
+                name="Token"
+                active={activeItem === 'Token'}
+                onClick={this.handleItemClick}
+              >
+                <Icon name="ticket" />
+                Token
+              </Menu.Item>
+
               <Dropdown item text="More">
                 <Dropdown.Menu>
                   <Dropdown.Item icon="edit" text="Edit Profile" />
