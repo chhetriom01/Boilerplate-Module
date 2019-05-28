@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import Testimonial from 'containers/Testimonial';
 import ListTestimonial from 'containers/Testimonial/TestimonialList';
 import TestimonialEdit from 'containers/Testimonial/TestimonialEdit';
+import BlogEditor from 'containers/Blog/BlogEditor';
 import User from 'containers/User';
 import Token from 'containers/Token'
 import Blog from 'containers/Blog';
@@ -46,6 +47,7 @@ class AdminDashboard extends React.Component {
         <div className="main_data">
           <Switch>
             <Route exact path="/admin/blog" component={Blog} />
+            <Route exact path = '/admin/blog/blogeditor' component ={BlogEditor} />
 
             <Route exact path="/admin/testimonial" component={Testimonial} />
             <Route

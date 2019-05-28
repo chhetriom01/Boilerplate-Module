@@ -18,17 +18,17 @@ import makeSelectBlog from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Blog extends React.Component {
   render() {
     return (
       <div>
-        <Helmet>
-          <title>Blog</title>
-          <meta name="description" content="Description of Blog" />
-        </Helmet>
-        <FormattedMessage {...messages.header} />
+        <Link to="/admin/blog/blogeditor">
+          <Button type="button">Add User</Button>
+        </Link>
       </div>
     );
   }
