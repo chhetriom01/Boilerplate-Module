@@ -148,7 +148,7 @@ export class LoginForm extends React.Component {
                 <Button
                   color="green"
                   fluid
-                  size="large"
+                  size="large" 
                   onClick={this.resetvalue}
                 >
                   Reset
