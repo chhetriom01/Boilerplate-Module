@@ -54,7 +54,7 @@ export class LoginForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     // console.log(nextProps.userRole,"Message from login form next props");
     if (nextProps.userRole !== this.props.userRole) {
-      const role = nextProps.userRole;
+      const role = nextProps.userRole;      
       role === 'superadmin'
         ? this.props.redirect('/admin')
         : this.props.redirect('/user');
