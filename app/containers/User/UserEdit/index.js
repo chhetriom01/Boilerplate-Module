@@ -22,13 +22,18 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Dropdown } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import {
   postUserDataRequest,
   getUserDataByIdRequest,
   putUserDataByIdRequest,
 } from './actions';
+
+const options = [
+  { key: 1, text: 'Student', value: 'student' },
+  { key: 2, text: 'superadmin', value: 'superadmin' },
+];
 
 /* eslint-disable react/prefer-stateless-function */
 export class UserEdit extends React.Component {
@@ -42,7 +47,7 @@ export class UserEdit extends React.Component {
         password: 'manish',
         securityQuestion: 'favourite food',
         securityAnswer: 'momo',
-        userRole: 'student',
+        userRole: '',
       },
       errorMessage: null,
       getDataById: null,
@@ -97,12 +102,22 @@ export class UserEdit extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.state.data);
     this.props.match.params.id
       ? this.props.putUserDataByIdRequest(
           this.state.data,
           this.props.match.params.id,
         )
       : this.props.postUserDataRequest(this.state.data);
+  };
+
+  handleChange = (e, { value }) => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        userRole: value,
+      },
+    });
   };
 
   resetvalue = () => {
@@ -121,7 +136,8 @@ export class UserEdit extends React.Component {
 
   render() {
     const id = this.props.match.params.id;
-
+    const { om } = this.state;
+    console.log('from state', om);
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -144,16 +160,19 @@ export class UserEdit extends React.Component {
               onChange={this.onInputChange}
               required
             />
+            {console.log('from the userROle', this.state.value)}
           </Form.Group>
           <Form.Group>
-            <Form.Input
-              label="User Role"
-              placeholder="Enter the User Role"
-              name="userRole"
-              value={this.state.data.userRole}
-              onChange={this.onInputChange}
-              required
-            />
+            <Form.Input label="User Role" required>
+              <Dropdown
+                onChange={this.handleChange}
+                options={options}
+                name="userRole"
+                placeholder="Choose an option"
+                selection
+                value={this.state.userRole}
+              />
+            </Form.Input>
           </Form.Group>
           <Form.Group>
             <Form.Input
