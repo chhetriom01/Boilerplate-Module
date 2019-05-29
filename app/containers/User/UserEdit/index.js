@@ -31,8 +31,8 @@ import {
 } from './actions';
 
 const options = [
-  { key: 1, text: 'Student', value: 'student' },
-  { key: 2, text: 'superadmin', value: 'superadmin' },
+  { key: 1, value: 'student' },
+  { key: 2, value: 'superadmin' },
 ];
 
 /* eslint-disable react/prefer-stateless-function */
