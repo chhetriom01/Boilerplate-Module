@@ -18,15 +18,42 @@ import makeSelectSideBar from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import {
+  Menu,
+  Icon,
+  Item,
+  Dropdown,
+  Accordion,
+  Form,
+  Button,
+} from 'semantic-ui-react';
 import { Rote, Link } from 'react-router-dom';
+
+const DropForm = (
+  <div>
+    <Menu.Item>Add Blog</Menu.Item>
+    <Menu.Item>Blog Category</Menu.Item>
+  </div>
+);
 
 /* eslint-disable react/prefer-stateless-function */
 export class SideBar extends React.Component {
-  state = {};
+  state = { activeIndex: 0 };
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    this.setState({ activeIndex: newIndex });
+  };
+
   render() {
     const { activeItem } = this.state;
+    const { activeIndex } = this.state;
+
     return (
       <div className="pusher">
         <div className="full height">
@@ -84,6 +111,20 @@ export class SideBar extends React.Component {
               >
                 <Icon name="ticket" />
                 Token
+              </Menu.Item>
+              <Menu.Item>
+                <Accordion>
+                  <Accordion.Title
+                    active={activeIndex === 1}
+                    content="OM CHHETRI"
+                    index={1}
+                    onClick={this.handleClick}
+                  />
+                  <Accordion.Content
+                    active={activeIndex === 1}
+                    content={DropForm}
+                  />
+                </Accordion>
               </Menu.Item>
 
               <Dropdown item text="More">

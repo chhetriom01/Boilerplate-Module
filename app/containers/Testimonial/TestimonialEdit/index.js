@@ -136,9 +136,9 @@ export class TestimonialEdit extends React.Component {
               />
             </Form.Group>
           </Form.Field> */}
-          <Button type="Submit">Submit</Button>
+          <Button color="blue" type="Submit">Submit</Button>
           <Link to="/admin/testimonial">
-            <Button onClick={this.resetvalue}>Cancel</Button>
+            <Button color="red" onClick={this.resetvalue}>Cancel</Button>
           </Link>
         </Form>
       </div>

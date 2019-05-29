@@ -90,7 +90,7 @@ export class ListTestimonial extends React.Component {
                   <Table.Cell>{element.personName}</Table.Cell>
                   <Table.Cell>{element.organization}</Table.Cell>
                   <Table.Cell>{element.testimonialContent}</Table.Cell>
-                  <Table.Cell className="ui two buttons">
+                  <Table.Cell>
                     {/* <Link to="/admin/testimonial/listtestimonial/testimonialedit/${id}"> */}
                     <Button
                       basic

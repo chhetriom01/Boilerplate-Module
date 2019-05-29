@@ -227,9 +227,9 @@ export class UserEdit extends React.Component {
               false
             )}
           </Form.Group>
-          <Button type="Submit">Submit</Button>
+          <Button color="blue" type="Submit">Submit</Button>
           <Link to="/admin/user">
-            <Button onClick={this.resetvalue}>Cancel</Button>
+            <Button color="red" onClick={this.resetvalue}>Cancel</Button>
           </Link>
         </Form>
         {this.state.errorMessage && this.state.errorMessage}

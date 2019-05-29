@@ -63,8 +63,9 @@ export class User extends React.Component {
   render() {
     return (
       <div>
+        <h1>User Management</h1>
         <Link to="/admin/user/useredit/">
-          <Button type="button">Add User</Button>
+          <Button color="teal" type="button">Add User</Button>
         </Link>
         {this.props.errorMessage && this.props.errorMessage}
         <Table celled>
@@ -89,7 +90,7 @@ export class User extends React.Component {
                   <Table.Cell>{value.lastName}</Table.Cell>
                   <Table.Cell>{value.username}</Table.Cell>
                   <Table.Cell>{value.userRole}</Table.Cell>
-                  <Table.Cell className="ui two buttons">
+                  <Table.Cell >
                     {/* <Link to="/admin/testimonial/listtestimonial/testimonialedit/${id}"> */}
                     <Button
                       basic

@@ -19,7 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-import * as jwt from 'jwt-decode';
+import decode from 'jwt-decode';
 import { push } from 'connected-react-router';
 import './App.css';
 
@@ -29,11 +29,15 @@ export class DashBoardUser extends React.Component {
   state = {};
 
   componentDidMount() {
-    const decoded = jwt(localStorage.getItem('token'));
+    if(!!localStorage.getItem('token')){
+    const decoded = decode(localStorage.getItem('token'));
     const role = decoded.user.userRole;
     if (role !== 'student') {
       this.props.redirect('/');
     }
+  } else {
+    this.props.redirect('/');
+  }
   }
 
   handleLogout = () => {

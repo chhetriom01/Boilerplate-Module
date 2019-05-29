@@ -31,8 +31,11 @@ export class Testimonial extends React.Component {
   render() {
     return (
       <div>
+        <h1>Testimonial</h1>
         <Link to="/admin/testimonial/testimonialedit/">
-          <Button type="button">Add Testimonial</Button>
+          <Button  color="teal" type="button">
+            Add Testimonial
+          </Button>
         </Link>
         <ListTestimonial />
       </div>

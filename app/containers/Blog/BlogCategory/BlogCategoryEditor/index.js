@@ -1,6 +1,6 @@
 /**
  *
- * BlogCategory
+ * BlogCategoryEditor
  *
  */
 
@@ -14,19 +14,22 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectBlogCategory from './selectors';
+import makeSelectBlogCategoryEditor from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
-export class BlogCategory extends React.Component {
+export class BlogCategoryEditor extends React.Component {
   render() {
     return (
       <div>
         <Helmet>
-          <title>BlogCategory</title>
-          <meta name="description" content="Description of BlogCategory" />
+          <title>BlogCategoryEditor</title>
+          <meta
+            name="description"
+            content="Description of BlogCategoryEditor"
+          />
         </Helmet>
         <FormattedMessage {...messages.header} />
       </div>
@@ -34,12 +37,12 @@ export class BlogCategory extends React.Component {
   }
 }
 
-BlogCategory.propTypes = {
+BlogCategoryEditor.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  blogCategory: makeSelectBlogCategory(),
+  blogCategoryEditor: makeSelectBlogCategoryEditor(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -53,11 +56,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'blogCategory', reducer });
-const withSaga = injectSaga({ key: 'blogCategory', saga });
+const withReducer = injectReducer({ key: 'blogCategoryEditor', reducer });
+const withSaga = injectSaga({ key: 'blogCategoryEditor', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(BlogCategory);
+)(BlogCategoryEditor);

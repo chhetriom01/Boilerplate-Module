@@ -40,6 +40,11 @@ export class BlogEditor extends React.Component {
     };
   }
 
+componentDidMount(){
+  console.log(this.props);
+  
+}
+
   onInputChange = event => {
     const field = event.target.name;
     const data = this.state.data;
@@ -130,9 +135,9 @@ export class BlogEditor extends React.Component {
             />
           </Form.Group>
 
-          <Button type="Submit">Submit</Button>
+          <Button color="blue" type="Submit">Submit</Button>
           <Link to="/admin/blog">
-            <Button onClick={this.resetvalue}>Cancel</Button>
+            <Button color="red" onClick={this.resetvalue}>Cancel</Button>
           </Link>
         </Form>
       </div>
