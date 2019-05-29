@@ -1,6 +1,21 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, select, takeLatest, fork } from 'redux-saga/effects';
+import XcelTRip from 'utils/apiHelper';
+import * as types from './constants';
+import * as actions from './actions';
 
-// Individual exports for testing
+function* fetchBlog() {
+  const apiUri = `blog`;
+  const token = localStorage.getItem('token');
+  yield fork(
+    XcelTRip.get(
+      apiUri,
+      actions.fetchBlogSuccess,
+      actions.fetchBlogRequest,
+      token,
+    ),
+  );
+}
+
 export default function* blogSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(types.FETCH_BLOG_REQUEST, fetchBlog);
 }

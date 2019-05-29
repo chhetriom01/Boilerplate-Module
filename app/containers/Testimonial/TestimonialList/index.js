@@ -67,6 +67,7 @@ export class ListTestimonial extends React.Component {
   };
 
   render() {
+    const { listTestimonialFromReducer } = this.state;
     return (
       <div>
         <div />
@@ -81,9 +82,9 @@ export class ListTestimonial extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {this.state.listTestimonialFromReducer &&
-              this.state.listTestimonialFromReducer.length > 0 &&
-              this.state.listTestimonialFromReducer.map((element, index) => (
+            {listTestimonialFromReducer &&
+              listTestimonialFromReducer.length > 0 &&
+              listTestimonialFromReducer.map((element, index) => (
                 <Table.Row key={index}>
                   <Table.Cell>{index + 1}</Table.Cell>
                   <Table.Cell>{element.personName}</Table.Cell>

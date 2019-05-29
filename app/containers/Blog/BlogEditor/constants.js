@@ -4,4 +4,6 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/BlogEditor/DEFAULT_ACTION';
+export const POST_BLOG_REQUEST = 'POST_BLOG_REQUEST';
+export const POST_BLOG_SUCCESS = 'POST_BLOG_SUCCESS';
+export const POST_BLOG_ERROR = 'POST_BLOG_ERROR';

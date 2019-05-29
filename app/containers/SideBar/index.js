@@ -46,12 +46,12 @@ export class SideBar extends React.Component {
               <Menu.Item
                 as={Link}
                 to="/admin/blog"
-                name="-"
-                active={activeItem === 'Blog'}
+                name="blog"
+                active={activeItem === 'blog'}
                 onClick={this.handleItemClick}
               >
                 <Icon name="grid layout" />
-                Blog 
+                Blog
               </Menu.Item>
               <Menu.Item
                 as={Link}

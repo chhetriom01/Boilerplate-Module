@@ -21,5 +21,11 @@ const makeSelectBlog = () =>
     substate => substate.toJS(),
   );
 
+const makeSelectFetchBlog =() =>
+createSelector(
+  selectBlogDomain,
+  substate => substate.get('fetchBlogResponse')
+)
+
 export default makeSelectBlog;
-export { selectBlogDomain };
+export { selectBlogDomain,makeSelectFetchBlog };

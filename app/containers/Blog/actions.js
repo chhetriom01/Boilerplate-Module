@@ -4,10 +4,9 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import * as types from './constants';
+import action from 'utils/action';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const fetchBlogRequest = action(types.FETCH_BLOG_REQUEST);
+export const fetchBlogSuccess = action(types.FETCH_BLOG_SUCCESS, 'response');
+export const fetchBlogError = action(types.FETCH_BLOG_ERROR, 'error');
