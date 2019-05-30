@@ -20,20 +20,22 @@ import makeSelectBlogCategory, {
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Button, Divider, Table } from 'semantic-ui-react';
+import { Button, Divider, Table, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getBlogCategoryRequest } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class BlogCategory extends React.Component {
-  state = {};
-
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   componentDidMount() {
     this.props.getBlogCategoryRequest();
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.getBlogCategory.toJS());
+    console.log(nextProps.getBlogCategory.toJS());
     if (nextProps.getBlogCategory !== this.props.getBlogCategory) {
       this.setState({
         getBlogCategory: nextProps.getBlogCategory.toJS(),
@@ -76,7 +78,33 @@ export class BlogCategory extends React.Component {
                 <Table.Row key={index}>
                   <Table.Cell>{index + 1}</Table.Cell>
                   <Table.Cell>{element.categoryName}</Table.Cell>
-                  <Table.Cell>{element.active}</Table.Cell>
+                  <Table.Cell>
+                    <div>
+                      {element.active === true ? (
+                        <Icon color="green" name="check" />
+                      ) : (
+                        <Icon color="red" name="close" />
+                      )}
+                    </div>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Button
+                      basic
+                      color="green"
+                      onClick={() => this.onEdit(element._id)}
+                    >
+                      Edit
+                    </Button>
+                    {/* </Link> */}
+
+                    <Button
+                      basic
+                      color="red"
+                      onClick={() => this.onDelete(element._id)}
+                    >
+                      Delete
+                    </Button>
+                  </Table.Cell>
                 </Table.Row>
               ))}
           </Table.Body>
@@ -86,9 +114,9 @@ export class BlogCategory extends React.Component {
   }
 }
 
-BlogCategory.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// BlogCategory.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   blogCategory: makeSelectBlogCategory(),

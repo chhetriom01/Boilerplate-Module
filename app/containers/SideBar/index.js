@@ -31,8 +31,12 @@ import { Rote, Link } from 'react-router-dom';
 
 const DropForm = (
   <div>
-    <Menu.Item>Add Blog</Menu.Item>
-    <Menu.Item>Blog Category</Menu.Item>
+    <Menu.Item as={Link} to="/admin/blog">
+      Add Blog
+    </Menu.Item>
+    <Menu.Item as={Link} to="/admin/blog/blogcategory">
+      Blog Category
+    </Menu.Item>
   </div>
 );
 
@@ -112,11 +116,14 @@ export class SideBar extends React.Component {
                 <Icon name="ticket" />
                 Token
               </Menu.Item>
+              <i class="button primary ui">Test</i>
+
               <Menu.Item>
-                <Accordion>
+                <Accordion >
                   <Accordion.Title
                     active={activeIndex === 1}
-                    content="OM CHHETRI"
+                    style={{color: "#ffffff"}}
+                    content="Test Accordion"
                     index={1}
                     onClick={this.handleClick}
                   />

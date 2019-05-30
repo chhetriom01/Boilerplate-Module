@@ -21,8 +21,7 @@ function blogCategoryReducer(state = initialState, action) {
       });
 
     case types.GET_BLOG_CATEGORY_SUCCESS:
-      console.log("from the getsuccess",action.response);
-      
+      // console.log("from the getsuccess",action.response);
       return state.merge({
         loading: false,
         getResponse: action.response.dataList,
