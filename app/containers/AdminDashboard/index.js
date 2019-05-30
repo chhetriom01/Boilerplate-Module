@@ -16,7 +16,8 @@ import TestimonialEdit from 'containers/Testimonial/TestimonialEdit';
 import Blog from 'containers/Blog';
 import BlogEditor from 'containers/Blog/BlogEditor';
 import BlogCategory from 'containers/Blog/BlogCategory';
-import BlogCategoryEditor from 'containers/Blog/BlogCategory/BlogCategoryEditor';
+// import BlogCategoryEditor from 'containers/Blog/BlogCategory/BlogCategoryEditor';
+import BlogCategoryEditor from '../Blog/BlogCategory/BlogCategoryEditor'
 
 import User from 'containers/User';
 import UserEdit from '../User/UserEdit';

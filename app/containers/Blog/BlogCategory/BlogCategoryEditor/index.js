@@ -20,6 +20,7 @@ import saga from './saga';
 import messages from './messages';
 import { Link } from 'react-router-dom';
 import { Form, Button, Checkbox } from 'semantic-ui-react';
+import { postBlogCategoryRequest } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class BlogCategoryEditor extends React.Component {
@@ -54,7 +55,8 @@ export class BlogCategoryEditor extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.postBlogCategoryRequest(this.state.data);
   };
   render() {
     return (
@@ -100,19 +102,22 @@ export class BlogCategoryEditor extends React.Component {
   }
 }
 
-BlogCategoryEditor.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// BlogCategoryEditor.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   blogCategoryEditor: makeSelectBlogCategoryEditor(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     dispatch,
+//   };
+// }
+const mapDispatchToProps = dispatch => ({
+  postBlogCategoryRequest: data => dispatch(postBlogCategoryRequest(data)),
+});
 
 const withConnect = connect(
   mapStateToProps,
