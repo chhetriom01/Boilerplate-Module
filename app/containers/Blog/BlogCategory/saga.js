@@ -1,6 +1,21 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, select, takeLatest, fork } from 'redux-saga/effects';
+import XcelTrip from 'utils/apiHelper';
+import * as types from './constants';
+import * as actions from './actions';
 
-// Individual exports for testing
+function* getBlogCategory() {
+  const apiUri = `/blogcategory`;
+  const token = localStorage.getItem('token');
+  yield fork(
+    XcelTrip.get(
+      apiUri,
+      actions.getBlogCategorySuccess,
+      actions.getBlogCategoryError,
+      token,
+    ),
+  );
+}
+
 export default function* blogCategorySaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(types.GET_BLOG_CATEGORY_REQUEST, getBlogCategory);
 }

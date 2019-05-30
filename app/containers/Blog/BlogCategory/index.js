@@ -14,19 +14,35 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectBlogCategory from './selectors';
+import makeSelectBlogCategory, {
+  createSelectGetBlogCategory,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Button, Divider } from 'semantic-ui-react';
+import { Button, Divider, Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { getBlogCategoryRequest } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class BlogCategory extends React.Component {
   state = {};
-  // handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  componentDidMount() {
+    this.props.getBlogCategoryRequest();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.getBlogCategory.toJS());
+    if (nextProps.getBlogCategory !== this.props.getBlogCategory) {
+      this.setState({
+        getBlogCategory: nextProps.getBlogCategory.toJS(),
+      });
+    }
+  }
+
   render() {
-    // const { activeItem } = this.state;
+    const { getBlogCategory } = this.state;
     return (
       <div>
         <h1>Blog Management</h1>
@@ -35,13 +51,7 @@ export class BlogCategory extends React.Component {
           <Button type="button"> Blog</Button>
         </Link>
         <Link to="/admin/blog/blogCategory">
-          <Button
-            primary
-            type="button"
-            name="category"
-            // active={activeItem === 'category'}
-            // onClick={this.handleItemClick}
-          >
+          <Button primary type="button" name="category">
             Blog Category
           </Button>
         </Link>
@@ -50,6 +60,27 @@ export class BlogCategory extends React.Component {
         <Link to="/admin/blog/blogCategory/blogcategoryeditor">
           <Button>Add Blog Category</Button>
         </Link>
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>S.N</Table.HeaderCell>
+              <Table.HeaderCell>BlogCategory</Table.HeaderCell>
+              <Table.HeaderCell>Active</Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {getBlogCategory &&
+              getBlogCategory.length > 0 &&
+              getBlogCategory.map((element, index) => (
+                <Table.Row key={index}>
+                  <Table.Cell>{index + 1}</Table.Cell>
+                  <Table.Cell>{element.categoryName}</Table.Cell>
+                  <Table.Cell>{element.active}</Table.Cell>
+                </Table.Row>
+              ))}
+          </Table.Body>
+        </Table>
       </div>
     );
   }
@@ -61,13 +92,18 @@ BlogCategory.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   blogCategory: makeSelectBlogCategory(),
+  getBlogCategory: createSelectGetBlogCategory(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     dispatch,
+//   };
+// }
+
+const mapDispatchToProps = dispatch => ({
+  getBlogCategoryRequest: () => dispatch(getBlogCategoryRequest()),
+});
 
 const withConnect = connect(
   mapStateToProps,
